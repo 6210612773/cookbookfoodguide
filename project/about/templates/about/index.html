@@ -1,0 +1,24 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>About Us</title>
+</head>
+<body>
+  <h1>Cookbook food guide</h1>
+  <p>สมาชิก</p>
+  <p>ธัญพิสิฐ แกมทอง 6210612534</p>
+  <p>อนุชนา ปัญญาประดิษฐ์ 6210612575</p>
+  <p>ปฐากร สุขแสง 6210612773</p>
+  <p>จารุกร ล่ำชม 6210612708</p>
+  <p><a href="{% url 'about:ER' %}">ER</a></p>
+  <p><a href="https://github.com/6210612773/cookbookfoodguide">Git Hub</a></p>
+  <p><a href="https://www.pivotaltracker.com/n/projects/2535892">pivotaltracker</a></p>
+  <p><a href="{% url 'home' %}">HOME</a></p>
+  <main>
+    {% block content %}
+    {% endblock %}
+  </main>
+</body>
+</html>
