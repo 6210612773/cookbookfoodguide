@@ -16,3 +16,25 @@ def index (request):
 def ER (request):
     return render(request,'about/ER.html',{})
 
+def Goals (request):
+    return render(request,'about/Goals.html',{})
+
+def Personas (request):
+    return render(request,'about/Personas.html',{})
+
+def stories (request):
+    return render(request,'about/stories.html',{})
+
+def Sitemap (request):
+    return render(request,'about/Sitemap.html',{})
+
+def Descriptions (request):
+    return render(request,'about/Descriptions.html',{})
+
+def Wireframes (request):
+    return render(request,'about/Wireframes.html',{})
+
+def non_funtional (request):
+    return render(request,'about/non_funtional.html',{})
+
+

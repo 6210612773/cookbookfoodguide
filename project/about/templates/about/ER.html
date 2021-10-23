@@ -1,9 +1,14 @@
 <!DOCTYPE html>
 <html>
-    <body>
-       ER
-       <img src="ERP.jpg">
-       <p><a href="{% url 'home' %}">HOME</a></p>
-
+    <body><center>
+       <h1>ER</h1><br>
+       <p><a href="{% url 'home' %}">HOME</a><a>--------------</a>
+        <a href="{% url 'about:index' %}">About</a></p>
+       {% load static %}
+       <img src="{% static 'images/er.png' %}" width="70%" />
+       <h1>UML</h1><br>
+       <img src="{% static 'images/uml.png' %}" width="70%" />
+       
+</center>
     </body>
 </html>
