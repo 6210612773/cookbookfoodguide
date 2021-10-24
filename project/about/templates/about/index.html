@@ -1,3 +1,4 @@
+{% extends "about/layout.html" %}
 
 <!DOCTYPE html>
 <html>
@@ -5,27 +6,87 @@
   <meta charset="utf-8">
   <title>About Us</title>
 </head>
-<body>
+{% block title %}{% endblock %}
+
+
+
+  {% block content %}
+  <body>
+  <u>
+    <li><a class="active1" href="{% url 'home' %}">Home</a></li>
+    <l><a href="#news">Menu</a></l>
+    <l><a href="{% url 'about:index' %}">About</a></l>
+    <l><a href="{% url 'login' %}">Log In</a></l>
+    <l><a href="{% url 'signup' %}">Sign Up</a></l>
+  </u>
   <h1>Cookbook food guide</h1>
-  <p>สมาชิก</p>
-  <p>ธัญพิสิฐ แกมทอง 6210612534</p>
-  <p>อนุชนา ปัญญาประดิษฐ์ 6210612575</p>
-  <p>ปฐากร สุขแสง 6210612773</p>
-  <p>จารุกร ล่ำชม 6210612708</p>
-  <p><a href="{% url 'about:ER' %}">ER , UML</a></p>
-  Requirements
-  <li><a href="{% url 'about:Goals' %}">Goals</a></li>
-  <li><a href="{% url 'about:Personas' %}">Personas</a></li>
-  <li><a href="{% url 'about:stories' %}">stories</a></li>
-  <li><a href="{% url 'about:Sitemap' %}">Sitemap</a></li>
-  <li><a href="{% url 'about:Descriptions' %}">Descriptions</a></li>
-  <li><a href="{% url 'about:Wireframes' %}">Wireframes</a></li>
-  <li><a href="{% url 'about:non_funtional' %}">non_funtional , Risks , Future Iterations</a></li>
-  <p><a href="https://github.com/6210612773/cookbookfoodguide">Git Hub</a></p>
-  <p><a href="https://www.pivotaltracker.com/n/projects/2535892">pivotaltracker</a></p>
-  <p><a href="{% url 'home' %}">HOME</a></p>
+  <h2 style="text-align:center">Our Team</h2>
+  <div class="row">
+  <div class="column">
+    <div class="card">
+             {% load static %}
+     <center>
+       <img src="{% static 'images/default.png' %}" width="30%" /></center>
+      <div class="container">
+        <center><h2>ธัญพิสิฐ แกมทอง</h2></center>
+        <center><p class="title">6210612534</p></center>
+      </div>
+    </div>
+  </div>
+   <div class="column">
+    <div class="card">
+      {% load static %}
+      <center>
+       <img src="{% static 'images/default.png' %}" width="30%" /></center>
+      <div class="container">
+        <center><h2>อนุชนา ปัญญาประดิษฐ์</h2></center>
+        <center><p class="title">6210612575</p></center>
+      </div>
+    </div>
+  </div>
+
+  <div class="column">
+    <div class="card">
+      {% load static %}
+       <center>
+       <img src="{% static 'images/default.png' %}" width="30%" /></center>
+      <div class="container">
+        <center><h2>ปฐากร สุขแสง</h2></center>
+        <center><p class="title"> 6210612773</p></center>
+      </div>
+    </div>
+  </div>
+</div>
+ <div class="column">
+    <div class="card">
+      {% load static %}
+      <center>
+       <img src="{% static 'images/default.png' %}" width="30%" /></center>
+      <div class="container">
+        <center><h2>จารุกร ล่ำชม</h2></center>
+        <center><p class="title"> 6210612708</p></center>
+      </div>
+    </div>
+  </div>
+</div>
+ 
+   
+  
+  </ul>
+  <nav>
+    <ul>
+      <li><a href="{% url 'about:Goals' %}">Goals</a></li>
+      <li><a href="{% url 'about:Personas' %}">Personas</a></li>
+      <li><a href="{% url 'about:stories' %}">stories</a></li>
+      <li><a href="{% url 'about:Sitemap' %}">Sitemap</a></li>
+      <li><a href="{% url 'about:Descriptions' %}">Descriptions</a></li>
+      <li><a href="{% url 'about:Wireframes' %}">Wireframes</a></li>
+      <li><a href="{% url 'about:non_funtional' %}">non_funtional , Risks , Future Iterations</a></li>
+    <li><a href="https://github.com/6210612773/cookbookfoodguide">Git Hub</a></li>
+    <li><a href="https://www.pivotaltracker.com/n/projects/2535892">pivotaltracker</a></li>
+    </ul>
+  </nav>
   <main>
-    {% block content %}
     {% endblock %}
   </main>
 </body>
