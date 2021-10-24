@@ -10,35 +10,49 @@
 
   {% block content %}
   <body>
-  <u>
-    <li><a class="active1" href="{% url 'home' %}">Home</a></li>
-    <l><a href="#news">Menu</a></l>
-    <l><a href="{% url 'about:index' %}">About</a></l>
-    <l><a href="{% url 'login' %}">Log In</a></l>
-    <l><a href="{% url 'signup' %}">Sign Up</a></l>
-  </u>
-  <h1>Cookbook food guide</h1>
-  <h2 style="text-align:center">Our Team</h2>
+    <div class="nav">
+    <ul>
+      
+      <li><a href="{% url 'home' %}">Home</a></li>
+      <li><a href="{% url 'home' %}">Find</a></li>
+      <li><a href="#news">Menu</a>
+        <ul>
+          <li><a href="#news">Menu1</a></li>
+          <li><a href="#news">Menu1</a></li>
+          <li><a href="#news">Menu1</a></li>
+          <li><a href="#news">Menu1</a></li>
+          <li><a href="#news">Menu1</a></li>
+          <li><a href="#news">Menu1</a></li>
+
+        </ul>
+      </li>
+      <li><a href="{% url 'about:index' %}">About</a></li>
+      <li style="float:right; margin:0px; "><a href="{% url 'login' %}">Log In</a></li>
+      <li style="float:right; margin:0px; "><a href="{% url 'signup' %}">Sign Up</a></li>
+</ul></div>
+    <br><br><br><br>
+  <h1>Cookbook food guide</h1><center>
+  <p2 style="text-align:center">Our Team</p2></center>
   <div class="row">
   <div class="column">
     <div class="card">
              {% load static %}
-     <center>
+     <center><br>
        <img src="{% static 'images/default.png' %}" width="30%" /></center>
       <div class="container">
         <center><h2>ธัญพิสิฐ แกมทอง</h2></center>
-        <center><p class="title">6210612534</p></center>
+        <center><p1 class="title">6210612534</p1></center>
       </div>
     </div>
   </div>
    <div class="column">
     <div class="card">
       {% load static %}
-      <center>
+      <center><br>
        <img src="{% static 'images/default.png' %}" width="30%" /></center>
       <div class="container">
         <center><h2>อนุชนา ปัญญาประดิษฐ์</h2></center>
-        <center><p class="title">6210612575</p></center>
+        <center><p1 class="title">6210612575</p1></center>
       </div>
     </div>
   </div>
@@ -46,11 +60,11 @@
   <div class="column">
     <div class="card">
       {% load static %}
-       <center>
+       <center><br>
        <img src="{% static 'images/default.png' %}" width="30%" /></center>
       <div class="container">
         <center><h2>ปฐากร สุขแสง</h2></center>
-        <center><p class="title"> 6210612773</p></center>
+        <center><p1 class="title"> 6210612773</p1></center>
       </div>
     </div>
   </div>
@@ -58,11 +72,11 @@
  <div class="column">
     <div class="card">
       {% load static %}
-      <center>
+      <center><br>
        <img src="{% static 'images/default.png' %}" width="30%" /></center>
       <div class="container">
         <center><h2>จารุกร ล่ำชม</h2></center>
-        <center><p class="title"> 6210612708</p></center>
+        <center><p1 class="title"> 6210612708</p1></center>
       </div>
     </div>
   </div>

@@ -13,8 +13,40 @@
   <p><a href="{% url 'logout' %}">Log Out</a></p>
 
 {% else %}
-  <p>You are not logged in</p>
-  <a href="{% url 'login' %}">Log In</a> |
-  <a href="{% url 'signup' %}">Sign Up</a>
+<body>
+  <div class="nav">
+    <ul>
+      
+      <li><a href="{% url 'home' %}">Home</a></li>
+      <li><a href="{% url 'home' %}">Find</a></li>
+      <li><a href="#news">Menu</a>
+        <ul>
+          <li><a href="#news">Menu1</a></li>
+          <li><a href="#news">Menu1</a></li>
+          <li><a href="#news">Menu1</a></li>
+          <li><a href="#news">Menu1</a></li>
+          <li><a href="#news">Menu1</a></li>
+          <li><a href="#news">Menu1</a></li>
+
+        </ul>
+      </li>
+      <li><a href="{% url 'about:index' %}">About</a></li>
+      <li style="float:right; margin:0px; "><a href="{% url 'login' %}">Log In</a></li>
+      <li style="float:right; margin:0px; "><a href="{% url 'signup' %}">Sign Up</a></li>
+</ul></div>
+<nav>
+  <ul>
+    <li><a href="{% url 'about:Goals' %}">Goals</a></li>
+    <li><a href="{% url 'about:Personas' %}">Personas</a></li>
+    <li><a href="{% url 'about:stories' %}">stories</a></li>
+    <li><a href="{% url 'about:Sitemap' %}">Sitemap</a></li>
+    <li><a href="{% url 'about:Descriptions' %}">Descriptions</a></li>
+    <li><a href="{% url 'about:Wireframes' %}">Wireframes</a></li>
+    <li><a href="{% url 'about:non_funtional' %}">non_funtional , Risks , Future Iterations</a></li>
+  <li><a href="https://github.com/6210612773/cookbookfoodguide">Git Hub</a></li>
+  <li><a href="https://www.pivotaltracker.com/n/projects/2535892">pivotaltracker</a></li>
+  </ul>
+</nav>
+  </body>
 {% endif %}
 {% endblock %}
