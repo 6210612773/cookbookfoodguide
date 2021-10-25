@@ -3,12 +3,12 @@
 <html>
   <head>
     <style>
-            body{
+            body {
                 font-family: 'PT mono', sans-serif;
                 font-size: 14px;
                 margin: 0;
                 padding: 0;
-                background-color: rgb(253, 255, 252);
+                background: rgb(255, 255, 255);
             }
       
             .nav ul{
@@ -22,11 +22,11 @@
             .nav li{
               font-size: 1.2em;
               line-height: 40px;
-              text-align: left;
+              text-align: center;
             }
             .nav a {
               text-decoration: none;
-              color: #fff;
+              color: rgb(255, 255, 255);
               display: block;
               padding-left: 10px;
               border-bottom: 1px solid #888;
@@ -45,8 +45,26 @@
             .nav li li{
               font-size: 0.8em;
             }
+            .nav li ul {
+                position: absolute;
+                display: none;
+                width: 100% ;
+              }
+            .nav li:hover ul {
+              display: block;
+            }
+            .nav li ul li{
+              display: block;
+              
+            }
+            .nav li ul li a:hover{
+              background-color: rgb(219, 80, 0);
+            }
 
-            @media screen and (min-width: 650px) {
+            @media screen and (min-width: 780px) {
+              body {
+                background: rgb(255, 255, 255);
+            }
               .nav li {
                 width: 130px;
                 border-bottom: none;
@@ -80,9 +98,78 @@
 
             }
 
-            
+            nav ul{
+              position: fixed;
+                left: 0;
+                bottom: 0;
+                width: 100%;
+                background-color: black;
+                text-align: center;
+                margin: 0;                
+            }
+            nav ul li{
+                display: inline-block;
+                line-height: 40px;
+                margin: 0 0px;
+                
+            }
+            nav ul li a{
+                color: white;
+                font-size: 10px;
+                padding: 3px 6px;
+                border-radius: 1px;
+                text-transform: uppercase;
 
-nav ul{
+            }
+            
+            html {
+                  box-sizing: border-box;
+            }
+
+            *, *:before, *:after {
+              box-sizing: inherit;
+            }
+            
+            .column {
+              float: left;
+              width: 100%;
+              margin-bottom: 16px;
+              padding: 0 8px;
+            }
+            
+            .card {
+              box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+              margin: 8px;
+            }
+            
+            .about-section {
+              padding: 50px;
+              text-align: center;
+              background-color: #474e5d;
+              color: white;
+            }
+            
+            .container {
+              padding: 0 16px;
+            }
+            
+            .container::after, .row::after {
+              content: "";
+              clear: both;
+              display: table;
+            }
+            
+            .title {
+              color: grey;
+            }
+
+            h1 { color: #b48608; font-family: 'Comic Sans MS', serif; font-size: 36px; font-weight: 400; font-style: italic; line-height: 44px; margin: 0 0 12px; text-align: center; }
+            h2 { font-family: 'TH Mali Grade 6', serif; font-size: 28px; font-weight: 400; font-weight: bold; line-height: 44px; margin: 0 0 2px; text-align: center; }    
+            p1 { font-family: 'TH Mali Grade 6', serif; font-size: 28px; font-weight: bold; line-height: 44px; margin: 0 0 12px; text-align: center; }    
+            p2 { font-family: 'TH Mali Grade 6', serif; font-size: 38px; font-weight: bold; }    
+
+            @media screen and (min-width: 780px){
+              nav ul{
                 position: fixed;
                 left: 0;
                 bottom: 0;
@@ -90,20 +177,26 @@ nav ul{
                 background-color: black;
                 text-align: center;
             }
-            nav ul li{
-                display: inline-block;
-                line-height: 80px;
-                margin: 0 5px;
-            }
-            nav ul li a{
-                color: white;
-                font-size: 14px;
-                padding: 7px 12px;
-                border-radius: 3px;
-                text-transform: uppercase;
+              nav ul li{
+                  display: inline-block;
+                  line-height: 80px;
+                  margin: 0 5px;
+              }
+              nav ul li a{
+                  color: white;
+                  font-size: 14px;
+                  padding: 7px 12px;
+                  border-radius: 3px;
+                  text-transform: uppercase;
+                  
 
             }
             
+            h1 { color: #b48608; font-family: 'Comic Sans MS', serif; font-size: 36px; font-weight: 400; font-style: italic; line-height: 44px; margin: 0 0 12px; text-align: center; }
+            h2 { font-family: 'TH Mali Grade 6', serif; font-size: 28px; font-weight: 400; font-weight: bold; line-height: 44px; margin: 0 0 2px; text-align: center; }    
+            p1 { font-family: 'TH Mali Grade 6', serif; font-size: 28px; font-weight: bold; line-height: 44px; margin: 0 0 12px; text-align: center; }    
+            p2 { font-family: 'TH Mali Grade 6', serif; font-size: 38px; font-weight: bold; }    
+
             html {
                   box-sizing: border-box;
             }
@@ -144,12 +237,9 @@ nav ul{
             .title {
               color: grey;
             }
+            }
             
-            h1 { color: #b48608; font-family: 'Comic Sans MS', serif; font-size: 36px; font-weight: 400; font-style: italic; line-height: 44px; margin: 0 0 12px; text-align: center; }
-            h2 { font-family: 'TH Mali Grade 6', serif; font-size: 28px; font-weight: 400; font-weight: bold; line-height: 44px; margin: 0 0 2px; text-align: center; }    
-            p1 { font-family: 'TH Mali Grade 6', serif; font-size: 28px; font-weight: bold; line-height: 44px; margin: 0 0 12px; text-align: center; }    
-            p2 { font-family: 'TH Mali Grade 6', serif; font-size: 38px; font-weight: bold; }    
-
+            
 
     
     
