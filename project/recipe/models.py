@@ -28,7 +28,7 @@ class recipe(models.Model):
         vegan = "vegan"
         halal = "halal"
         beverag = "beverag"
-        ovo = "oco vegen"
+        oco = "oco vegen"
         vegy = "vegetarian"
         appetizer = "appetizer"
 
@@ -37,8 +37,9 @@ class recipe(models.Model):
         price = "pay only"
 
     menu = models.CharField(max_length=100,default=None)
+    ingredient_unit = models.TextField(blank=True)
+    HowToDo = models.TextField(blank=True)
     ingredientInmenu =models.ManyToManyField(ingredient,blank=True,related_name="ingredientInrecipe")
-
     type = models.CharField(max_length=100,
         choices=mode.choices,
         default=mode.normal,
@@ -49,8 +50,6 @@ class recipe(models.Model):
         default=level.free,
         )
     
-
-
     def __str__(self) -> str:
-        return f"{self.type}"
+        return f"{self.menu}"
 

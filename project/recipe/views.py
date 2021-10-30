@@ -6,7 +6,62 @@ from django.urls import reverse
 
 from django.contrib.auth.models import User
 
+from .models import recipe
+
 def index (request):
     return render(request,'recipe/index.html',{
-        
+        "recipes": recipe.objects.all(),
         })
+
+def mode (request):
+    return render(request,'recipe/mode.html',{
+        "recipes": recipe.objects.all(),
+        })
+
+def meat (request):
+    return render(request,'recipe/meat.html',{
+        "recipes": recipe.objects.all(),
+        })
+    
+def veg (request):
+    return render(request,'recipe/veg.html',{
+        "recipes": recipe.objects.all(),
+        })
+
+def norm (request):
+    return render(request,'recipe/norm.html',{
+        "recipes": recipe.objects.all(),
+        })
+
+def hal (request):
+    return render(request,'recipe/hal.html',{
+        "recipes": recipe.objects.all(),
+        })
+    
+def bev (request):
+    return render(request,'recipe/bev.html',{
+        "recipes": recipe.objects.all(),
+        })
+
+def oco (request):
+    return render(request,'recipe/oco.html',{
+        "recipes": recipe.objects.all(),
+        })
+
+def vegy (request):
+    return render(request,'recipe/vegy.html',{
+        "recipes": recipe.objects.all(),
+        })
+    
+def app (request):
+    return render(request,'recipe/app.html',{
+        "recipes": recipe.objects.all(),
+        })
+
+def menu (request,menu_id):
+    Recipe = get_object_or_404(recipe,pk=menu_id)
+
+    return render(request,"recipe/menu.html",{
+        "menu": Recipe,
+    })
+    

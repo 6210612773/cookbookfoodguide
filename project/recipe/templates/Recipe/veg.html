@@ -1,0 +1,12 @@
+{% block body %}
+
+{% for list_menu in recipes %}
+<a href = "{% url 'recipe:menu' list_menu.id %}" >
+    
+    {% if list_menu.type == "vegan" %}
+        {{list_menu.menu}}<br>
+    {% endif %}
+
+{% endfor %}
+
+    {% endblock %}
