@@ -22,11 +22,6 @@ def meat (request):
     return render(request,'recipe/meat.html',{
         "recipes": recipe.objects.all(),
         })
-    
-def veg (request):
-    return render(request,'recipe/veg.html',{
-        "recipes": recipe.objects.all(),
-        })
 
 def norm (request):
     return render(request,'recipe/norm.html',{

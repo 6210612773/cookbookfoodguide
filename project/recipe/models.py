@@ -25,7 +25,6 @@ class recipe(models.Model):
     class mode(models.TextChoices):
         normal = "normal"
         meat = "meat"
-        vegan = "vegan"
         halal = "halal"
         beverag = "beverag"
         oco = "oco vegen"

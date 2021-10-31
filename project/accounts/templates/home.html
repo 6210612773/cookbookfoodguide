@@ -3,14 +3,59 @@
 {% block title %}Home{% endblock %}
 
 {% block content %}
+
 {% if user.is_authenticated %}
+<section class="header">
+  <nav>
+    <a href="{% url 'home' %}">
+      {% load static %}
+      <img src="{% static 'images/logo_2.png' %}" width="10%" /></a>
+   
+<div class="nav-links" id="navLinks">
+  <i class="fa fa-times-circle-o" onclick="hideMenu()"></i>
+  <ul>
+    
+    <li><a href="{% url 'home' %}">Home</a></li>
+    <li><a href="{% url 'home' %}">Search</a></li>
+    <li><a href="#news">Category</a>
+      <div class="sub-about">
+        <ul>
+          <li><a href = "{% url 'recipe:meat' %}" >Meat</a></li>
+          <li><a href = "{% url 'recipe:app' %}" >Appitizer</a></li>
+          <li><a href = "{% url 'recipe:bev' %}" >Beverage</a></li>
+          <li><a href = "{% url 'recipe:hal' %}" >Halal</a></li>
+          <li><a href = "{% url 'recipe:norm' %}" >Normal</a></li>
+          <li><a href = "{% url 'recipe:oco' %}" >Oco vegan</a></li>
+          <li><a href = "{% url 'recipe:vegy' %}" >Vegetarian</a></li></li>
+      </ul>
+    </div>
+    </li>
+    <li><a href="#" class="About">About</a>
+     <div class="sub-about">
+          <ul>
+              <li><a href="{% url 'about:index' %}">Contact us</a></li>
+              <li><a href="{% url 'about:Goals' %}">Goals</a></li>
+              <li><a href="{% url 'about:Personas' %}">Personas</a></li>
+              <li><a href="{% url 'about:stories' %}">stories</a></li>
+              <li><a href="{% url 'about:Sitemap' %}">Sitemap</a></li>
+              <li><a href="{% url 'about:Descriptions' %}">Descriptions</a></li>
+              <li><a href="{% url 'about:Wireframes' %}">Wireframes</a></li>
+              <li><a href="{% url 'about:non_funtional' %}">non_funtional , Risks , Future Iterations</a></li>
+              <li><a href="https://github.com/6210612773/cookbookfoodguide">Git Hub</a></li>
+              <li><a href="https://www.pivotaltracker.com/n/projects/2535892">pivotaltracker</a></li>
+          </ul>
+      </div>
+    </li>
+    <li ><a href="{% url 'logout' %}">Log Out</a></li>
+    <li ><a href="#">{{ user.username }}</a></li>
+</ul></div>
+<i class="fa fa-bars" onclick="showMenu()"></i>
+</nav>
+
+</section>
   <h1>Hi {{ user.username }}!<br>
     {{ user.email }}</h1>
   
-  
-  
-  <p><a href="{% url 'about:index' %}">about</a></p>
-  <p><a href="{% url 'logout' %}">Log Out</a></p>
 
 {% else %}
 <body>
@@ -26,9 +71,21 @@
       
       <li><a href="{% url 'home' %}">Home</a></li>
       <li><a href="{% url 'home' %}">Search</a></li>
-      <li><a href="#news">Category</a></li>
-      <li><a href="#">About</a>
+      <li><a href="#news">Category</a>
         <div class="sub-about">
+          <ul>
+            <li><a href = "{% url 'recipe:meat' %}" >Meat</a></li>
+            <li><a href = "{% url 'recipe:app' %}" >Appitizer</a></li>
+            <li><a href = "{% url 'recipe:bev' %}" >Beverage</a></li>
+            <li><a href = "{% url 'recipe:hal' %}" >Halal</a></li>
+            <li><a href = "{% url 'recipe:norm' %}" >Normal</a></li>
+            <li><a href = "{% url 'recipe:oco' %}" >Oco vegan</a></li>
+            <li><a href = "{% url 'recipe:vegy' %}" >Vegetarian</a></li></li>
+        </ul>
+      </div>
+      </li>
+      <li><a href="#" class="About">About</a>
+       <div class="sub-about">
             <ul>
                 <li><a href="{% url 'about:index' %}">Contact us</a></li>
                 <li><a href="{% url 'about:Goals' %}">Goals</a></li>
@@ -43,8 +100,8 @@
             </ul>
         </div>
       </li>
-      <li style="float:right; margin:0px; "><a href="{% url 'login' %}">Log In</a></li>
-      <li style="float:right; margin:0px; "><a href="{% url 'signup' %}">Sign Up</a></li>
+      <li ><a href="{% url 'login' %}">Log In</a></li>
+      <li ><a href="{% url 'signup' %}">Sign Up</a></li>
 </ul></div>
 <i class="fa fa-bars" onclick="showMenu()"></i>
 </nav>

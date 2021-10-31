@@ -6,7 +6,6 @@ urlpatterns =[
     path('', views.index, name="index"),
     path('meat', views.meat, name="meat"),
     path('norm', views.norm, name="norm"),
-    path('veg', views.veg, name="veg"),
     path('hal', views.hal, name="hal"),
     path('bev', views.bev, name="bev"),
     path('oco', views.oco, name="oco"),
