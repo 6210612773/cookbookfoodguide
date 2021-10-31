@@ -35,6 +35,7 @@ class recipe(models.Model):
         free = "free"
         price = "pay only"
 
+    pic = models.ImageField(upload_to="",blank=True,null=True)
     menu = models.CharField(max_length=100,default=None)
     ingredient_unit = models.TextField(blank=True)
     HowToDo = models.TextField(blank=True)
@@ -48,6 +49,8 @@ class recipe(models.Model):
         choices=level.choices,
         default=level.free,
         )
+
+    calorie = models.IntegerField(default=None, null=True)
     
     def __str__(self) -> str:
         return f"{self.menu}"
