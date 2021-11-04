@@ -15,7 +15,6 @@ class ingredient(models.Model):
         choices=material.choices,
         default=material.other,
         )
-    caloriePerUnit = models.IntegerField(default=None, null=True)
 
     def __str__(self) -> str:
         return f"{self.ingredient}"
@@ -49,7 +48,7 @@ class recipe(models.Model):
         choices=level.choices,
         default=level.free,
         )
-
+    price = models.IntegerField(default=None, null=True)
     calorie = models.IntegerField(default=None, null=True)
     
     def __str__(self) -> str:
