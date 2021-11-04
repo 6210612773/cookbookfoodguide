@@ -1,12 +1,77 @@
-{% block body %}
-
-{% for list_menu in recipes %}
-<a href = "{% url 'recipe:menu' list_menu.id %}" >
-    
-    {% if list_menu.type == "normal" %}
-        {{list_menu.menu}}<br>
-    {% endif %}
-
-{% endfor %}
-
+{% extends 'Recipe/layout.html' %}
+{% load static %}
+{% block content %}
+<body>
+    <section class="header">
+        <nav>
+          <a href="{% url 'home' %}">
+            {% load static %}
+            <img src="{% static 'images/logo_2.png' %}" width="10%" /></a>
+         
+      <div class="nav-links" id="navLinks">
+        <i class="fa fa-times-circle-o" onclick="hideMenu()"></i>
+        <ul>
+          
+          <li><a href="{% url 'home' %}">Home</a></li>
+          <li><a href="{% url 'home' %}">Search</a></li>
+          <li><a href="#news">Category</a>
+            <div class="sub-about">
+              <ul>
+                <li><a href = "{% url 'recipe:meat' %}" >Meat</a></li>
+                <li><a href = "{% url 'recipe:app' %}" >Appitizer</a></li>
+                <li><a href = "{% url 'recipe:bev' %}" >Beverage</a></li>
+                <li><a href = "{% url 'recipe:hal' %}" >Halal</a></li>
+                <li><a href = "{% url 'recipe:norm' %}" >Normal</a></li>
+                <li><a href = "{% url 'recipe:oco' %}" >Oco vegan</a></li>
+                <li><a href = "{% url 'recipe:vegy' %}" >Vegetarian</a></li></li>
+            </ul>
+          </div>
+          </li>
+          <li><a href="#" class="About">About</a>
+           <div class="sub-about">
+                <ul>
+                    <li><a href="{% url 'about:index' %}">Contact us</a></li>
+                    <li><a href="{% url 'about:Goals' %}">Goals</a></li>
+                    <li><a href="{% url 'about:Personas' %}">Personas</a></li>
+                    <li><a href="{% url 'about:stories' %}">stories</a></li>
+                    <li><a href="{% url 'about:Sitemap' %}">Sitemap</a></li>
+                    <li><a href="{% url 'about:Descriptions' %}">Descriptions</a></li>
+                    <li><a href="{% url 'about:Wireframes' %}">Wireframes</a></li>
+                    <li><a href="{% url 'about:non_funtional' %}">non_funtional , Risks , Future Iterations</a></li>
+                    <li><a href="https://github.com/6210612773/cookbookfoodguide">Git Hub</a></li>
+                    <li><a href="https://www.pivotaltracker.com/n/projects/2535892">pivotaltracker</a></li>
+                </ul>
+            </div>
+          </li>
+          <li ><a href="{% url 'logout' %}">Log Out</a></li>
+          <li ><a href="#">{{ user.username }}</a></li>
+      </ul></div>
+      <i class="fa fa-bars" onclick="showMenu()"></i>
+      </nav>
+      
+    <section class="dishes" id="dishes">
+        <h1 class="heading">Normal<span>Recipe</span></h1>
+        <div class="box-container">
+        {% for list_menu in recipes %}
+        {% if list_menu.type == "app" %}
+            <div class="box">
+                <img class="image" src="{{list_menu.pic.url}}" style="width: 50%; ;"/><br>
+                <a href="#" class="fa fa-heart"></a>
+                <!-- <a href="#" class="fa fa-eye"></a><br> -->
+                <a href = "{% url 'recipe:menu' list_menu.id %}" >
+                <h3>{{list_menu.menu}}</h3></a>
+                <div class="stars">
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star-half-o"></i>
+                </div>
+                <span>$15.99</span><br><br>
+            </div>
+        {% endif %}
+        {% endfor %}   
+      </div>
+    </section>
+</body>
     {% endblock %}
