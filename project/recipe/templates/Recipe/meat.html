@@ -1,5 +1,5 @@
 {% extends 'Recipe/layout.html' %}
-
+{% load static %}
 {% block content %}
 <body>
 <section class="header">
@@ -49,8 +49,32 @@
   <i class="fa fa-bars" onclick="showMenu()"></i>
   </nav>
   
-  </section>
-  <section class="meat" id="meat">
+<section class="dishes" id="dishes">
+    <h1 class="heading">Meat<span>Recipe</span></h1>
+    <div class="box-container">
+    {% for list_menu in recipes %}
+    {% if list_menu.type == "meat" %}
+        <div class="box">
+            <img class="image" src="{{list_menu.pic.url}}" style="width: 50%; ;"/><br>
+            <a href="#" class="fa fa-heart"></a>
+            <!-- <a href="#" class="fa fa-eye"></a><br> -->
+            <a href = "{% url 'recipe:menu' list_menu.id %}" >
+            <h3>{{list_menu.menu}}</h3></a>
+            <div class="stars">
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star-half-o"></i>
+            </div>
+            <span>$15.99</span><br><br>
+        </div>
+    {% endif %}
+    {% endfor %}   
+  </div>
+</section>
+  
+  <!-- <section class="dishes" id="dishes">
         <h1 class="heading">Meat<span>Recipe</span></h1>
         <div class="box-container">
             {% for list_menu in recipes %}
@@ -64,21 +88,7 @@
         </div> 
         {% endif %}
         {% endfor %}   
-        <!-- <div class="box">
-            <div class="content">
-                {% load static %}
-                    <img class="image" src="{% static 'images/meat_1.jpg' %}" style="width:100%" alt=""/>
-                    <h3>Greek Tortellini Skillet</h3>
-                </div>
         </div>
-        <div class="box">
-            <div class="content">
-                {% load static %}
-                    <img class="image" src="{% static 'images/meat_1.jpg' %}" style="width:100%" alt=""/>
-                    <h3>Greek Tortellini Skillet</h3>
-                </div>
-        </div>   -->
-        </div>
-  </section> 
+</section>  -->
 </body>
-    {% endblock %}
+{% endblock %}
