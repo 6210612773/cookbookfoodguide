@@ -243,7 +243,7 @@
     
 }
 .dishes .box-container .box span{
-    color: black;
+    color: rgb(0, 0, 0);
     font-weight: bolder;
     margin-right: 1rem;
     font-size: 1.3rem;
