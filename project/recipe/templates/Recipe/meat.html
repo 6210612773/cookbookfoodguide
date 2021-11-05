@@ -67,7 +67,11 @@
             <i class="fa fa-star"></i>
             <i class="fa fa-star-half-o"></i>
             </div>
-            <span>$15.99</span><br><br>
+            {% if list_menu.price == None %}
+              <span>free</span>
+            {% else %} 
+              <span>{{list_menu.price}}</span>
+            {% endif %}
         </div>
     {% endif %}
     {% endfor %}   

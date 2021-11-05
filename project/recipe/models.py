@@ -22,11 +22,11 @@ class ingredient(models.Model):
 class recipe(models.Model):
 
     class mode(models.TextChoices):
-        normal = "normal"
+        dessert = "dessert"
         meat = "meat"
         halal = "halal"
         beverag = "beverag"
-        oco = "oco vegen"
+        ocovegen = "ocovegen"
         vegy = "vegetarian"
         appetizer = "appetizer"
 
@@ -41,13 +41,11 @@ class recipe(models.Model):
     ingredientInmenu =models.ManyToManyField(ingredient,blank=True,related_name="ingredientInrecipe")
     type = models.CharField(max_length=100,
         choices=mode.choices,
-        default=mode.normal,
+        default=None,
         )
     
-    status = models.CharField(max_length=100,
-        choices=level.choices,
-        default=level.free,
-        )
+    status = ''
+    
     price = models.IntegerField(default=None, null=True)
     calorie = models.IntegerField(default=None, null=True)
     

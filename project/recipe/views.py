@@ -56,9 +56,9 @@ def app (request):
 def menu (request,menu_id):
     Recipe = get_object_or_404(recipe,pk=menu_id)
     if  Recipe.price == None:
-        Recipe.status="free"
+        Recipe.status = "free"
     elif Recipe.price > 0 :
-        Recipe.status="price"
+        Recipe.status = "price"
     return render(request,"recipe/menu.html",{
         "menu": Recipe,
     })
