@@ -1,37 +1,124 @@
 {% extends "about/layout.html" %}
-
-<!DOCTYPE html>
+{% load static %}
+<!-- <!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8">
   <title>About Us</title>
 </head>
-{% block title %}{% endblock %}
+{% block title %}{% endblock %} -->
 
   {% block content %}
-  <body>
-    <div class="nav">
-    <ul>
-      
-      <li><a href="{% url 'home' %}">Home</a></li>
-      <li><a href="{% url 'home' %}">Find</a></li>
-      <li><a href="#news">Menu</a>
-        <ul>
-          <li><a href="#news">Menu1</a></li>
-          <li><a href="#news">Menu1</a></li>
-          <li><a href="#news">Menu1</a></li>
-          <li><a href="#news">Menu1</a></li>
-          <li><a href="#news">Menu1</a></li>
-          <li><a href="#news">Menu1</a></li>
-
-        </ul>
-      </li>
-      <li><a href="{% url 'about:index' %}">About</a></li>
-      <li1 style="float:right; margin:0px; "><a href="{% url 'login' %}">Log In</a></li1> 
-      <li1 style="float:right; margin:0px; "><a href="{% url 'signup' %}">Sign Up</a></li1>
-</ul></div>
-    <br><br><br><br>
-  <h1>Cookbook food guide</h1><center>
+    <section class="header">
+      <nav>
+        <a href="{% url 'home' %}">
+          {% load static %}
+          <img src="{% static 'images/logo_2.png' %}" width="10%" /></a>
+       
+    <div class="nav-links" id="navLinks">
+      <i class="fa fa-times-circle-o" onclick="hideMenu()"></i>
+      <ul>
+        
+        <li><a href="{% url 'home' %}">Home</a></li>
+        <li><a href="{% url 'home' %}">Search</a></li>
+        <li><a href="#news">Category</a>
+          <div class="sub-about">
+            <ul>
+              <li><a href = "{% url 'recipe:meat' %}" >Meat</a></li>
+              <li><a href = "{% url 'recipe:app' %}" >Appitizer</a></li>
+              <li><a href = "{% url 'recipe:bev' %}" >Beverage</a></li>
+              <li><a href = "{% url 'recipe:hal' %}" >Halal</a></li>
+              <li><a href = "{% url 'recipe:norm' %}" >Dessert</a></li>
+              <li><a href = "{% url 'recipe:oco' %}" >Ovo vegan</a></li>
+              <li><a href = "{% url 'recipe:vegy' %}" >Vegetarian</a></li></li>
+          </ul>
+        </div>
+        </li>
+        <li><a href="#" class="About">About</a>
+         <div class="sub-about">
+              <ul>
+                  <li><a href="{% url 'about:index' %}">Contact us</a></li>
+                  <li><a href="https://github.com/6210612773/cookbookfoodguide">Git Hub</a></li>
+                  <li><a href="https://www.pivotaltracker.com/n/projects/2535892">pivotaltracker</a></li>
+              </ul>
+          </div>
+        </li>
+        <li ><a href="{% url 'logout' %}">Log Out</a></li>
+        <li ><a href="#">{{ user.username }}</a></li>
+    </ul></div>
+    <i class="fa fa-bars" onclick="showMenu()"></i>
+    </nav>
+    
+    </section>
+    <div class="team-section">
+        <div class="container">
+            <div class="row">
+              <div class="title">
+                <h1>Our team</h1>
+                <p>The first idea was to create a website that could fill in the gaps of recipe information 
+                  and create a search engine that could put the ingredients we had. And the website will 
+                  match the menu that the user can make displayed on the screen. And to provide more 
+                  choices for users, the website also separates food categories such as vegetarian food, 
+                  vegan food or food for people with milk allergies.
+                </p>
+              </div>
+                <div class="team-card">
+                  <div class="card">
+                    <div class="image-section">
+                      <img src="{% static 'images/toon.jpg' %}">
+                    </div>
+                    <div class="content">
+                      <h3>Thanpisit Kaemthong</h3>
+                      <h4>Web developer</h4>
+                      <p>6210612534</p>
+                        <p>Sophomore of Computer engineering</p><p>Thammasart University</p>
+                        <p>Email : 6210612534@student.tu.ac.th
+                      </p>
+                    </div>
+                  </div>
+                  <div class="card">
+                    <div class="image-section">
+                      <img src="{% static 'images/brave.jpg' %}">
+                    </div>
+                    <div class="content">
+                      <h3>Pathakorn Suksang</h3>
+                      <h4>Web developer</h4>
+                      <p>6210612773</p>
+                        <p>Sophomore of Computer engineering</p><p>Thammasart University</p>
+                        <p>Email : 6210612773@student.tu.ac.th
+                      </p>
+                    </div>
+                  </div>
+                  <div class="card">
+                    <div class="image-section">
+                      <img src="{% static 'images/default.png' %}">
+                    </div>
+                    <div class="content">
+                      <h3>Anudchana Panyapradit</h3>
+                      <h4>Web developer</h4>
+                        <p>6210612575 </p>
+                        <p>Sophomore of Computer engineering</p><p>Thammasart University</p>
+                        <p>Email : 6210612575@student.tu.ac.th</p>
+                    </div>
+                  </div>
+                  <div class="card">
+                    <div class="image-section">
+                      <img src="{% static 'images/ja.JPG' %}">
+                    </div>
+                    <div class="content">
+                      <h3>Jarukorn Lumchom</h3>
+                      <h4>Web developer</h4>
+                      <p>6210612708</p> 
+                      <p>Sophomore of Computer engineering</p><p>Thammasart University</p>
+                      <p>Email : 6210612708@student.tu.ac.th
+                    </p>
+                    </div>
+                  </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  <!-- <h1>Cookbook food guide</h1><center>
   <p2 style="text-align:center">Our Team</p2></center>
   <div class="row">
   <div class="column">
@@ -82,22 +169,9 @@
   </div>
 </div>
   
-  </ul>
-  <nav>
-    <ul>
-      <li><a href="{% url 'about:Goals' %}">Goals</a></li>
-      <li><a href="{% url 'about:Personas' %}">Personas</a></li>
-      <li><a href="{% url 'about:stories' %}">stories</a></li>
-      <li><a href="{% url 'about:Sitemap' %}">Sitemap</a></li>
-      <li><a href="{% url 'about:Descriptions' %}">Descriptions</a></li>
-      <li><a href="{% url 'about:Wireframes' %}">Wireframes</a></li>
-      <li><a href="{% url 'about:non_funtional' %}">non_funtional , Risks , Future Iterations</a></li>
-    <li><a href="https://github.com/6210612773/cookbookfoodguide">Git Hub</a></li>
-    <li><a href="https://www.pivotaltracker.com/n/projects/2535892">pivotaltracker</a></li>
-    </ul>
-  </nav>
-  <main>
+  </ul> -->
+  
     {% endblock %}
-  </main>
+  <!-- </main>
 </body>
-</html>
+</html> -->
