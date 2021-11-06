@@ -52,3 +52,12 @@ class recipe(models.Model):
     def __str__(self) -> str:
         return f"{self.menu}"
 
+class Comment(models.Model):
+    post = models.ForeignKey(recipe,on_delete=models.CASCADE,related_name="comments")
+    # user=models.ForeignKey(User,default=None, on_delete=models.PROTECT)
+    body = models.TextField(default=None)
+    date_added =models.DateTimeField(auto_now_add=True)
+    
+    def __str__(self) -> str:
+        return f"{self.post}"
+

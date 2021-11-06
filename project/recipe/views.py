@@ -2,11 +2,14 @@ from django.shortcuts import render ,get_object_or_404
 from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 from django.urls import reverse
+from django.views.generic.edit import CreateView
+from .forms import CommentForm
+from django.urls import reverse_lazy
 # Create your views here.
 
 from django.contrib.auth.models import User
 
-from .models import recipe
+from .models import recipe ,Comment
 
 def index (request):
     return render(request,'recipe/index.html',{
@@ -60,6 +63,10 @@ def menu (request,menu_id):
     elif Recipe.price > 0 :
         Recipe.status = "price"
     return render(request,"recipe/menu.html",{
-        "menu": Recipe,
+        "menu": Recipe,"comment": Comment.objects.all(), 'user':request.user
     })
     
+class AddCommentView(CreateView):
+    form_class = CommentForm
+    template_name = 'Recipe/add_comment.html'
+    success_url = reverse_lazy('home')
