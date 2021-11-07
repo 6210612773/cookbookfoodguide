@@ -30,9 +30,6 @@ class recipe(models.Model):
         vegy = "vegetarian"
         appetizer = "appetizer"
 
-    class level(models.TextChoices):
-        free = "free"
-        price = "pay only"
 
     pic = models.ImageField(upload_to="",blank=True,null=True)
     menu = models.CharField(max_length=100,default=None)
@@ -60,4 +57,31 @@ class Comment(models.Model):
     
     def __str__(self) -> str:
         return f"{self.post}"
+
+class Addrecipe(models.Model):
+    user=models.ForeignKey(User,default=None, on_delete=models.PROTECT)
+    bankaccount = models.CharField(default=None,max_length=20)
+    class mode(models.TextChoices):
+        dessert = "dessert"
+        meat = "meat"
+        halal = "halal"
+        beverag = "beverag"
+        ocovegen = "ocovegen"
+        vegy = "vegetarian"
+        appetizer = "appetizer"
+
+    pic = models.ImageField(upload_to="",blank=True,null=True)
+    menu = models.CharField(max_length=100,default=None)
+    ingredient_unit = models.TextField(blank=True)
+    HowToDo = models.TextField(blank=True)
+    ingredientHave =models.ManyToManyField(ingredient,blank=True,related_name="ingredientHave")
+    type = models.CharField(max_length=100,
+        choices=mode.choices,
+        default=None,
+        )
+    price = models.IntegerField(default=None, null=True)
+    calorie = models.IntegerField(default=None, null=True)
+    
+    def __str__(self) -> str:
+        return f"{self.menu}"
 

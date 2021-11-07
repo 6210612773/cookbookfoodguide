@@ -3,14 +3,14 @@ from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.views.generic.edit import CreateView
-from .forms import CommentForm
+from .forms import AddForm, CommentForm
 from django.urls import reverse_lazy
 from . import views
 # Create your views here.
 
 from django.contrib.auth.models import User
 
-from .models import recipe,Comment
+from .models import recipe,Comment,Addrecipe
 
 def index (request):
     return render(request,'recipe/index.html',{
@@ -57,6 +57,11 @@ def app (request):
         "recipes": recipe.objects.all(),
         })
 
+def confirm (request):
+    return render(request,'recipe/complete.html',{
+        "recipes": recipe.objects.all(),
+        })
+
 def menu (request,menu_id):
     Recipe = get_object_or_404(recipe,pk=menu_id)
     if  Recipe.price == None:
@@ -77,5 +82,16 @@ class AddCommentView(CreateView):
 
     def form_valid(self, form):
         form.instance.post_id = self.kwargs['menu_id']
+        form.instance.user = self.request.user
+        return super().form_valid(form)
+
+
+class AddRecipe(CreateView):
+    model = Addrecipe
+    form_class = AddForm
+    template_name = 'Recipe/add_recipe.html'
+    success_url = reverse_lazy('recipe:confirm')
+
+    def form_valid(self, form):
         form.instance.user = self.request.user
         return super().form_valid(form)
