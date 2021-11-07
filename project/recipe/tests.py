@@ -58,7 +58,15 @@ class RecipeModelTestCase(TestCase):
 
     def test_menu_recipe(self):
         c = Client()
-        recipe1 = recipe.objects.create(menu='soup') 
+        recipe1 = recipe.objects.create(menu='soup',type='meat') 
         response = c.get(reverse('recipe:menu', args=(recipe1.id,)))
+        recipe2 = recipe.objects.create(menu='soup',type='halal',price=20) 
+        response = c.get(reverse('recipe:menu', args=(recipe1.id,)))
+        response = c.get(reverse('recipe:menu', args=(recipe2.id,)))
         self.assertEqual(response.status_code, 200)
 
+
+    def test_confirm_recipe(self):
+        c = Client()
+        response = c.get(reverse('recipe:confirm'))
+        self.assertEqual(response.status_code, 200)
