@@ -14,5 +14,6 @@ urlpatterns =[
     path('app', views.app, name="app"),
     path('mode', views.mode, name="mode"),
     path('<int:menu_id>',views.menu,name="menu"),
-    path('comment/',AddCommentView.as_view(),name="AddComment") ,
+    path('<int:menu_id>/comment/',AddCommentView.as_view(),name="AddComment") ,
+
 ]

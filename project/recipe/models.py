@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.contrib.auth.models import User
 # Create your models here.
 
 class ingredient(models.Model):
@@ -54,7 +54,7 @@ class recipe(models.Model):
 
 class Comment(models.Model):
     post = models.ForeignKey(recipe,on_delete=models.CASCADE,related_name="comments")
-    # user=models.ForeignKey(User,default=None, on_delete=models.PROTECT)
+    user=models.ForeignKey(User,default=None, on_delete=models.PROTECT)
     body = models.TextField(default=None)
     date_added =models.DateTimeField(auto_now_add=True)
     

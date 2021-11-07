@@ -5,11 +5,12 @@ from django.urls import reverse
 from django.views.generic.edit import CreateView
 from .forms import CommentForm
 from django.urls import reverse_lazy
+from . import views
 # Create your views here.
 
 from django.contrib.auth.models import User
 
-from .models import recipe ,Comment
+from .models import recipe,Comment
 
 def index (request):
     return render(request,'recipe/index.html',{
@@ -63,10 +64,18 @@ def menu (request,menu_id):
     elif Recipe.price > 0 :
         Recipe.status = "price"
     return render(request,"recipe/menu.html",{
-        "menu": Recipe,"comment": Comment.objects.all(), 'user':request.user
+        "menu": Recipe,
+        "comment": Comment.objects.all()
+        , 'user':request.user
     })
-    
+
 class AddCommentView(CreateView):
+    model = Comment
     form_class = CommentForm
     template_name = 'Recipe/add_comment.html'
-    success_url = reverse_lazy('home')
+    success_url = reverse_lazy('recipe:index')
+
+    def form_valid(self, form):
+        form.instance.post_id = self.kwargs['menu_id']
+        form.instance.user = self.request.user
+        return super().form_valid(form)

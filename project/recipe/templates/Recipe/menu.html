@@ -59,11 +59,13 @@
     {{user}}
 
     comment<br>
-    <li ><a href="{% url 'recipe:AddComment' %}">add comment</a></li>
+    <li ><a href="{% url 'recipe:AddComment' menu.id %}">add comment</a></li>
+    
+
     
     {% for com in comment %}
      {% if com.post == menu %}
-     {{com.post_by}}<br>
+     {{com.user}}<br>
         {{com.body}}<br>
         {{com.date_added}}<br>
       {% endif %}
