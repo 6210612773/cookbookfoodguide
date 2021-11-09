@@ -11,7 +11,7 @@ body {
     height: 100vh;
     justify-content: center;
     align-items: center;
-    background: linear-gradient(120deg, salmon, #42c2e2);
+    background: linear-gradient(120deg, rgb(114, 250, 198), #a742e2);
 }
 .container {
     max-width: 700px;
@@ -33,7 +33,7 @@ body {
     bottom: 0;
     height: 3px;
     width: 30px;
-    background: linear-gradient(120deg, salmon, #42c2e2);
+    background: linear-gradient(120deg, rgb(114, 250, 198), #a742e2);
 }
 .container .user-detail {
     display: flex;
@@ -68,7 +68,7 @@ form .button button{
     outline: none;
     color: #fff;
     border: none;
-    background: linear-gradient(120deg, salmon, #42c2e2);
+    background: linear-gradient(120deg, rgb(114, 250, 198), #4287e2);
     font-size: 18px;
     font-weight: 500;
     letter-spacing: 1px;
@@ -78,7 +78,7 @@ form .button button{
     
 }
 form .button button:hover {
-    background: linear-gradient(120deg, #42c2e2, salmon);
+    background: linear-gradient(120deg, #4287e2, rgb(114, 250, 198));
 }
 @media (max-width: 584px) {
     .container {

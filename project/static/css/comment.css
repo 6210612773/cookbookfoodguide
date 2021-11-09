@@ -1,0 +1,49 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@500;700&display=swap');
+@import url(https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/fontawesome.min.css);
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Ubuntu', sans-serif;
+  }
+  body  {
+    background-image: linear-gradient(rgba(205, 207, 216, 0.7),rgba(255, 255, 255, 0.7)), url(/static/images/bg7.jpg) ;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+
+  }
+
+.comment-box {
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-30%, -50%);
+    width: 500px;
+}
+.comment-box h2 {
+    font-size: 20px;
+    margin-bottom: 15px;
+}
+.comment-box textarea {
+    width: 60%;
+    height: 150px;
+    padding: 15px 20px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: 1px solid #86b0b6;
+}
+.comment-box textarea:focus {
+    border: 1px solid #000;
+    outline: 0;
+}
+button {
+    border: 0;
+    padding: 10px 30px;
+    background: #86b0b6;
+    font-size: 18px;
+    color: aliceblue;
+    margin-left: 70px;
+}
+button:hover {
+    background-color: #718a8e;
+}
