@@ -43,9 +43,12 @@ class recipe(models.Model):
     
     status = ''
     
-    price = models.IntegerField(default=None, null=True)
+    price = models.FloatField(default=None, null=True)
     calorie = models.IntegerField(default=None, null=True)
-    
+    member = models.ManyToManyField(User,blank=True,related_name="member")
+    like = models.ManyToManyField(User,blank=True,related_name="like")
+
+
     def __str__(self) -> str:
         return f"{self.menu}"
 
@@ -61,6 +64,11 @@ class Comment(models.Model):
 class Addrecipe(models.Model):
     user=models.ForeignKey(User,default=None, on_delete=models.PROTECT)
     bankaccount = models.CharField(default=None,max_length=20)
+
+    class status(models.TextChoices):
+        no = "no"
+        confirm = "confirm"
+
     class mode(models.TextChoices):
         dessert = "dessert"
         meat = "meat"
@@ -75,13 +83,60 @@ class Addrecipe(models.Model):
     ingredient_unit = models.TextField(blank=True)
     HowToDo = models.TextField(blank=True)
     ingredientHave =models.ManyToManyField(ingredient,blank=True,related_name="ingredientHave")
+
     type = models.CharField(max_length=100,
         choices=mode.choices,
         default=None,
         )
+
+    confirm = models.CharField(max_length=10,
+        choices=status.choices,
+        default=status.confirm.no,
+        )
+
     price = models.IntegerField(default=None, null=True)
     calorie = models.IntegerField(default=None, null=True)
     
     def __str__(self) -> str:
         return f"{self.menu}"
 
+class order (models.Model):
+    class status(models.TextChoices):
+        no = "no"
+        confirm = "confirm"
+    
+    user=models.ForeignKey(User,default=None, on_delete=models.PROTECT,related_name="userbuy")
+    order = models.ForeignKey(recipe,on_delete=models.CASCADE,default=None,related_name="menu_order")
+    price = models.FloatField(default=None, null=True)
+    pic = models.ImageField(upload_to="",blank=True,null=True)
+    date = models.DateField(editable=True)
+    time = models.TimeField(editable=True,default=None)
+    name = models.CharField(max_length=100,default=None)
+    bankaccount = models.CharField(default=None,max_length=4)
+    confirm = models.CharField(max_length=10,
+        choices=status.choices,
+        default=status.confirm.no,
+        )
+    def __str__(self) -> str:
+        return f"{self.name,self.time}"
+
+class search (models.Model):
+    Have = models.ManyToManyField(ingredient,blank=True,related_name="Have")
+    DontNeed =models.ManyToManyField(ingredient,blank=True,related_name="dontNeed")
+
+    def __str__(self) -> str:
+        return f"{self.Have}"
+
+class petition (models.Model):
+    user=models.ForeignKey(User,default=None, on_delete=models.PROTECT)
+    petition = models.TextField(blank=True)
+    date_added =models.DateTimeField(auto_now_add=True)
+    class status(models.TextChoices):
+        no = "no"
+        confirm = "confirm"
+    confirm = models.CharField(max_length=10,
+        choices=status.choices,
+        default=status.confirm.no,
+        )
+    def __str__(self) -> str:
+        return f"{self.user,self.date_added}"
