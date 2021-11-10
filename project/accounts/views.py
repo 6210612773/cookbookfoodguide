@@ -8,6 +8,13 @@ from django.contrib.auth.views import PasswordChangeView
 from django.contrib.auth.forms import PasswordChangeForm
 from django.shortcuts import render ,get_object_or_404
 from django.urls import reverse
+from recipe.models import recipe,Comment,Addrecipe,search
+
+def Home (request):
+    return render(request,'recipe/index.html',{
+        "recipes": recipe.objects.all(),
+        })
+
 
 class SignUpView(generic.CreateView):
     form_class = CustomUserCreationForm

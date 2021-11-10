@@ -63,9 +63,9 @@
 
     comment<br>
     {% for com in comment %}
-     {% if com.post == menu %}
-     {{com.user}}<br>
-        {{com.body}}<br>
+     {% if com.post == menu  %}
+     {{com.user}}
+        {{com.body}} 
         {{com.date_added}}<br>
       {% endif %}
     {% endfor %}

@@ -1,7 +1,7 @@
 from django.urls import path
 
 from . import views
-from .views import AddCommentView,AddRecipe,SendPetition, SendConfirm
+from .views import AddCommentView,AddRecipe,SendPetition, SendConfirm ,Search
 
 app_name = "recipe" 
 urlpatterns =[
@@ -17,10 +17,11 @@ urlpatterns =[
     path('<int:menu_id>',views.menu,name="menu"),
     path('<int:menu_id>/comment/',AddCommentView.as_view(),name="AddComment") ,
     path('addrecipe',AddRecipe.as_view(),name="addrecipe"),
-    path('conplete',views.confirm,name="conplete"),
+    path('complete',views.confirm,name="complete"),
     path('<int:menu_id>/like',views.like,name="like"),
     path('send/', SendPetition.as_view(), name='send'),
     path('<int:menu_id>/confirm/',SendConfirm.as_view(), name='comfirm'),
-
+    path('search', Search.as_view(), name="search"),
+    path('result', views.result, name="result"),
 
 ]

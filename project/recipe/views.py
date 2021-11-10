@@ -1,16 +1,17 @@
+from django.forms.widgets import NullBooleanSelect
 from django.shortcuts import render ,get_object_or_404
 from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.views.generic.edit import CreateView
-from .forms import AddForm, CommentForm ,SendPetition,SendComfirm
+from .forms import AddForm,Search, CommentForm ,SendPetition,SendComfirm
 from django.urls import reverse_lazy
 from . import views
 # Create your views here.
 
 from django.contrib.auth.models import User
 
-from .models import recipe,Comment,Addrecipe
+from .models import recipe,Comment,Addrecipe,search
 
 def index (request):
     return render(request,'recipe/index.html',{
@@ -80,14 +81,13 @@ class AddCommentView(CreateView):
     model = Comment
     form_class = CommentForm
     template_name = 'recipe/add_comment.html'
-    success_url = reverse_lazy('recipe:index')
+    success_url = reverse_lazy('home')
 
     def form_valid(self, form):
         form.instance.post_id = self.kwargs['menu_id']
         form.instance.user = self.request.user
         return super().form_valid(form)
-
-
+    
 class AddRecipe(CreateView):
     model = Addrecipe
     form_class = AddForm
@@ -101,12 +101,13 @@ class AddRecipe(CreateView):
 def like (request,menu_id):
     Recipe = get_object_or_404(recipe,pk=menu_id)
 
-    
     if request.user in Recipe.like.all():
         pass
     else:
         Recipe.like.add(request.user)
-    return HttpResponseRedirect(reverse("recipe:menu",args=(menu_id,)))
+    
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
+    
 
 def addmember (request,menu_id):
     Recipe = get_object_or_404(recipe,pk=menu_id)
@@ -116,16 +117,60 @@ def addmember (request,menu_id):
         Recipe.like.add(request.user)
     return HttpResponseRedirect(reverse("recipe:menu",args=(menu_id,)))
 
+def result (request):
+    All = recipe.objects.all()
+    if not request.user.is_authenticated:
+        x = User.objects.get(username="nologin")
+        find = search.objects.get(user_id=x)
+    else:
+        find = search.objects.get(user_id=request.user)
+    
+    menuHave = []
+    menuDontNeed = []
+    output=[]
+    for menu in All:
+        for ingInMenu in menu.ingredientInmenu.all():
+            for ingHave in find.Have.all():
+                if menu not in menuHave:
+                    if ingHave == ingInMenu:
+                        menuHave.append(menu)  
+                        output.append(menu) 
+            for ingNo in find.DontNeed.all():
+                if ingNo == ingInMenu:
+                        menuDontNeed.append(menu)
+    
+    for check in menuHave:
+        for check2 in menuDontNeed:
+            if  check2 == check:
+                output.remove(check)
+    if not output:
+        output=[0]
 
-def search (request):
-    return render(request,'recipe/search.html',{
-        "recipes": recipe.objects.all(),
-        })
+    return render(request,'recipe/result.html',{
+                "have":menuHave,
+                "Dont":menuDontNeed,
+                "all":All,
+                "check" :output
+                }) 
 
-def order (request):
-    return render(request,'recipe/order.html',{
-        "recipes": recipe.objects.all(),
-        })
+class Search (CreateView):
+    form_class = Search
+    success_url = reverse_lazy('recipe:result')
+    template_name = 'recipe/search.html'
+    def form_valid(self, form):
+        if not self.request.user.is_authenticated:
+            search.objects.filter(user=User.objects.get(username="nologin")).delete()
+            form.instance.user = User.objects.get(username="nologin")
+        else:
+            search.objects.filter(user=self.request.user).delete()
+            form.instance.user = self.request.user
+        return super().form_valid(form)
+    
+
+# def order (request):
+#     return render(request,'recipe/order.html',{
+#         "recipes": recipe.objects.all(),
+#         })
 
 class SendPetition (CreateView):
     form_class = SendPetition

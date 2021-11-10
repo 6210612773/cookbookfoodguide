@@ -121,11 +121,12 @@ class order (models.Model):
         return f"{self.name,self.time}"
 
 class search (models.Model):
+    user=models.ForeignKey(User,default=None, on_delete=models.PROTECT,related_name="usersearch")
     Have = models.ManyToManyField(ingredient,blank=True,related_name="Have")
     DontNeed =models.ManyToManyField(ingredient,blank=True,related_name="dontNeed")
 
     def __str__(self) -> str:
-        return f"{self.Have}"
+        return f"{self.user}"
 
 class petition (models.Model):
     user=models.ForeignKey(User,default=None, on_delete=models.PROTECT)

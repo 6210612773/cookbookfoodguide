@@ -1,0 +1,13 @@
+
+
+{% for menu in check %} 
+    {% if menu != 0 %}
+        {% for a in all %}
+            {% if menu == a %}
+                {{a}}<br>
+            {% endif %}
+        {% endfor %}
+    {% else %} 
+        don't have menu
+    {% endif %}
+{% endfor %}
