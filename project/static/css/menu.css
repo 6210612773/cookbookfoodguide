@@ -1,0 +1,24 @@
+*, ::after, ::before {
+    box-sizing: border-box;
+}
+.recipe-page .recipe-hero {
+    /* display: grid;
+    gap: 3rem; */
+    display: flex;
+    /* flex-wrap: wrap;
+    justify-content: space-between; */
+    padding: 100px;
+    justify-content: space-around ;
+    
+    
+}
+
+.recipe-hero-img {
+    height: 450px;
+    width: 60%;
+    border-radius: 10px;
+
+}
+.recipe-hero p{
+    color: grey;
+}

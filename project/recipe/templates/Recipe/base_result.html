@@ -1,0 +1,21 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="with=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="{%static 'css/style-cat.css'%}">
+        <link rel="stylesheet" href="{%static 'css/menu.css'%}">
+        <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+        <title>
+            Category
+        </title>
+    </head>
+    <body>
+    <main>
+        {% block content %}
+        {% endblock %}
+      </main>
+    </body>
+</html>

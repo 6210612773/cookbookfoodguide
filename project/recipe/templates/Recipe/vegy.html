@@ -2,52 +2,55 @@
 {% load static %}
 {% block content %}
 <body>
-    <section class="header">
-        <nav>
-          <a href="{% url 'home' %}">
-            {% load static %}
-            <img src="{% static 'images/logo_2.png' %}" width="10%" /></a>
-         
-      <div class="nav-links" id="navLinks">
-        <i class="fa fa-times-circle-o" onclick="hideMenu()"></i>
-        <ul>
-          
-          <li><a href="{% url 'home' %}">Home</a></li>
-          <li><a href="{% url 'home' %}">Search</a></li>
-          <li><a href="#news">Category</a>
+  <section class="header">
+    <nav>
+      <a href="{% url 'home' %}">
+        {% load static %}
+        <img src="{% static 'images/logo_2.png' %}" width="10%" /></a>
+     
+  <div class="nav-links" id="navLinks" >
+    <i class="fa fa-times-circle-o" onclick="hideMenu()"></i>
+    <ul>
+      
+      <li><a href="{% url 'home' %}">Home</a></li>
+      <li><a href="{% url 'recipe:search' %}">Search</a></li>
+      <li><a href="#news">Category</a>
+        <div class="sub-about">
+          <ul>
+            <li><a href = "{% url 'recipe:meat' %}" >Meat</a></li>
+            <li><a href = "{% url 'recipe:app' %}" >Appitizer</a></li>
+            <li><a href = "{% url 'recipe:bev' %}" >Beverage</a></li>
+            <li><a href = "{% url 'recipe:hal' %}" >Halal</a></li>
+            <li><a href = "{% url 'recipe:norm' %}" >Dessert</a></li>
+            <li><a href = "{% url 'recipe:oco' %}" >Ovo vegan</a></li>
+            <li><a href = "{% url 'recipe:vegy' %}" >Vegetarian</a></li></li>
+        </ul>
+      </div>
+      </li>
+      <li><a href="#" class="About">About</a>
+       <div class="sub-about">
+            <ul>
+                <li><a href="{% url 'about:index' %}">Contact us</a></li>
+                <li><a href="https://github.com/6210612773/cookbookfoodguide">Git Hub</a></li>
+                <li><a href="https://www.pivotaltracker.com/n/projects/2535892">pivotaltracker</a></li>
+            </ul>
+        </div>
+      </li>
+      {% if user.is_authenticated %}
+      <li ><a href="{% url 'logout' %}">Log Out</a></li>
+      {% else %}
+      <li ><a href="{% url 'login' %}">Log In</a></li>
+      {% endif %}
+      <li ><a href="{% url 'home' %}">{{ user.username }}</a>
             <div class="sub-about">
               <ul>
-                <li><a href = "{% url 'recipe:meat' %}" >Meat</a></li>
-                <li><a href = "{% url 'recipe:app' %}" >Appitizer</a></li>
-                <li><a href = "{% url 'recipe:bev' %}" >Beverage</a></li>
-                <li><a href = "{% url 'recipe:hal' %}" >Halal</a></li>
-                <li><a href = "{% url 'recipe:norm' %}" >Dessert</a></li>
-                <li><a href = "{% url 'recipe:oco' %}" >Ovo vegan</a></li>
-                <li><a href = "{% url 'recipe:vegy' %}" >Vegetarian</a></li></li>
+                <li><a href = "{% url 'EditProfile' %}" >Edit profile</a></li>
+                <li><a href = "{% url 'EditPassword' %}" >Edit password</a></li>
+                <li><a href = "{% url 'recipe:send' %}" >Contact us</a></li>
+                
             </ul>
           </div>
-          </li>
-          <li><a href="#" class="About">About</a>
-           <div class="sub-about">
-                <ul>
-                    <li><a href="{% url 'about:index' %}">Contact us</a></li>
-                    <li><a href="{% url 'about:Goals' %}">Goals</a></li>
-                    <li><a href="{% url 'about:Personas' %}">Personas</a></li>
-                    <li><a href="{% url 'about:stories' %}">stories</a></li>
-                    <li><a href="{% url 'about:Sitemap' %}">Sitemap</a></li>
-                    <li><a href="{% url 'about:Descriptions' %}">Descriptions</a></li>
-                    <li><a href="{% url 'about:Wireframes' %}">Wireframes</a></li>
-                    <li><a href="{% url 'about:non_funtional' %}">non_funtional , Risks , Future Iterations</a></li>
-                    <li><a href="https://github.com/6210612773/cookbookfoodguide">Git Hub</a></li>
-                    <li><a href="https://www.pivotaltracker.com/n/projects/2535892">pivotaltracker</a></li>
-                </ul>
-            </div>
-          </li>
-          <li ><a href="{% url 'logout' %}">Log Out</a></li>
-          <li ><a href="#">{{ user.username }}</a></li>
-      </ul></div>
-      <i class="fa fa-bars" onclick="showMenu()"></i>
-      </nav>
+      </li>
       
     <section class="dishes" id="dishes">
         <h1 class="heading">Vegan<span>Recipe</span></h1>
