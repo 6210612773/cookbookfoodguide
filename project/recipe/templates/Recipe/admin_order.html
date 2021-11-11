@@ -1,0 +1,19 @@
+<h1>Order</h1>
+{% load static %}
+
+
+{% for o in order %} 
+
+    {% if o.confirm == "no" %}
+    <img class="image" src="{{o.pic.url}}" style="width: 50%; ;"/><br>
+    <a href="{% url 'recipe:check' o.id  %}" >check</a>
+    {{o.confirm}}
+    {{o.user}}
+    {{o.date}} 
+    {{o.time}}<br>
+    {% endif %}
+
+{% endfor %}
+
+<br><br><br><br><br><br><br>
+<button class="w3-button w3-round-xlarge" ><a href="{% url 'admin:index' %}">Edit data</a></button>

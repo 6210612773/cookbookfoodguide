@@ -1,0 +1,10 @@
+{% for menu in recipes %}
+
+{% for i in menu.member.all %}
+    {% if i == my %}
+        {{menu}}<br>
+    {% endif %} 
+{% endfor %}
+
+
+{% endfor %}

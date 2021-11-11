@@ -56,7 +56,12 @@
 </section>
   <h1>Hi {{ user.username }}!<br>
     {{ user.email }}</h1>
-  
+    {%if user.username == "admin" %}
+    <a href = "{% url 'recipe:order' %}" >order</a><br><br>
+    <a href = "{% url 'recipe:petition' %}" >petition</a><br><br>
+    <a href = "{% url 'recipe:addmenu' %}" >user add menu</a><br><br>
+  <button class="w3-button w3-round-xlarge" ><a href="{% url 'admin:index' %}">Edit data</a></button>
+    {% endif %}
 
 {% else %}
 <body>

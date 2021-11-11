@@ -32,13 +32,13 @@ class SendPetition(forms.ModelForm):
         fields = ('petition',)
 
 class SendComfirm(forms.ModelForm):
-
     class Meta:
         model = order
         fields = ('pic','date','time','name','bankaccount',)
         widgets = {'date': forms.SelectDateWidget,
-                    'time': forms.TimeInput(attrs={'type': 'time'}),
+                    'time': forms.TimeInput(attrs={'type': 'time'},),
                     }
+        
 
 class Search(forms.ModelForm):
 
@@ -47,5 +47,11 @@ class Search(forms.ModelForm):
         fields = ('Have','DontNeed')
         widgets = {'Have': forms.CheckboxSelectMultiple,
                     'DontNeed' : forms.CheckboxSelectMultiple}
+
+        
+
+
+
+
         
        

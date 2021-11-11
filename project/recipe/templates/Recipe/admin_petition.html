@@ -1,0 +1,18 @@
+
+
+
+   
+    
+
+
+<h1>Petition</h1>
+{% for p in pet %}  
+    {% if p.confirm == "no" %}
+    {{p.user}}
+    {{p.date_added}} <br>
+    {{p.petition}}<br><br><br>
+    {% endif %}
+{% endfor %}
+
+<br><br><br><br><br><br><br>
+<button class="w3-button w3-round-xlarge" ><a href="{% url 'admin:index' %}">Edit data</a></button>

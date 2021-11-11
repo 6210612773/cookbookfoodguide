@@ -1,0 +1,11 @@
+{% for menu in recipes %}
+
+
+{% for i in menu.like.all %}
+    {% if i == my %}
+        {{menu}}<br>
+    {% endif %} 
+{% endfor %}
+
+
+{% endfor %}

@@ -1,0 +1,14 @@
+
+{% load static %}
+
+    
+<h1>Add menu</h1>
+{% for a in add %} 
+    {% if a.confirm == "no" %}
+    <img class="image" src="{{a.pic.url}}" style="width: 20%; ;"/><br>
+    {{a.user}}
+    {{a.menu}} <br>
+    {% endif %}
+{% endfor %}
+<br><br><br><br><br><br><br>
+<button class="w3-button w3-round-xlarge" ><a href="{% url 'admin:index' %}">Edit data</a></button>
