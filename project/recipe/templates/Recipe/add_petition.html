@@ -1,12 +1,77 @@
-{% extends 'base.html' %}
+{% extends 'recipe/base_petition.html' %}
 
 {% block title %}Add Recipe {% endblock %}
 
 {% block content %}
-<h2>Retition</h2>
+<section class="header">
+  <nav>
+    <a href="{% url 'home' %}">
+      {% load static %}
+      <img src="{% static 'images/logo_2.png' %}" width="10%" /></a>
+   
+<div class="nav-links" id="navLinks">
+  <i class="fa fa-times-circle-o" onclick="hideMenu()"></i>
+  <ul>
+    
+    <li><a href="{% url 'home' %}">Home</a></li>
+    <li><a href="{% url 'home' %}">Search</a></li>
+    <li><a href="#news">Category</a>
+      <div class="sub-about">
+        <ul>
+          <li><a href = "{% url 'recipe:meat' %}" >Meat</a></li>
+          <li><a href = "{% url 'recipe:app' %}" >Appitizer</a></li>
+          <li><a href = "{% url 'recipe:bev' %}" >Beverage</a></li>
+          <li><a href = "{% url 'recipe:hal' %}" >Halal</a></li>
+          <li><a href = "{% url 'recipe:norm' %}" >Dessert</a></li>
+          <li><a href = "{% url 'recipe:oco' %}" >Ovo vegan</a></li>
+          <li><a href = "{% url 'recipe:vegy' %}" >Vegetarian</a></li></li>
+      </ul>
+    </div>
+    </li>
+    <li><a href="#" class="About">About</a>
+     <div class="sub-about">
+          <ul>
+              <li><a href="{% url 'about:index' %}">Contact us</a></li>
+              <li><a href="https://github.com/6210612773/cookbookfoodguide">Git Hub</a></li>
+              <li><a href="https://www.pivotaltracker.com/n/projects/2535892">pivotaltracker</a></li>
+          </ul>
+      </div>
+    </li>
+    <li ><a href="{% url 'logout' %}">Log Out</a></li>
+    <li ><a href="#">{{ user.username }}</a>
+      <div class="sub-about">
+        <ul>
+          <li><a href = "{% url 'EditProfile' %}" >Edit profile</a></li>
+          <li><a href = "{% url 'EditPassword' %}" >Edit password</a></li>
+          <li><a href = "{% url 'recipe:send' %}" >Contact us</a></li>
+          
+      </ul>
+    </div>
+    </li>
+</ul></div>
+<i class="fa fa-bars" onclick="showMenu()"></i>
+</nav>
+
+</section>
+
+<div class="comment-box">
+  <h2>Contact us :</h2>
+  <form method="post">
+  <form action="#">
+    {% csrf_token %}
+    <textarea name="comment" id="" placeholder="Type your petition." for={{form.petition}} </textarea>
+    <br><br>
+    
+    <button type="submit">Submit Petition</button>
+   
+  </form>
+</form>
+</div>
+
+<!-- <h2>Retition</h2>
 <form method="post">
   {% csrf_token %}
   {{ form.as_p }}
   <button type="submit">Send</button>
-</form>
+</form> -->
 {% endblock %}

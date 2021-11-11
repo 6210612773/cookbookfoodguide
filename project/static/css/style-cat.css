@@ -129,7 +129,7 @@
       display: block;
       position: absolute;
       background: #f44336;
-      margin-top: 15px;
+      margin-top: 10px;
       margin-left: -15px;
   
   }
@@ -138,8 +138,8 @@
     margin: 10px;
   }
   .nav-links ul li:hover .sub-about ul li{
-    width: 150px;
-    padding: 10px;
+    width: 130px;
+    padding: 3.8px;
     background: transparent;
     border-radius: 0;
     text-align: left;

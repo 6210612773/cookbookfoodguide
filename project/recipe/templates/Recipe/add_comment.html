@@ -9,12 +9,12 @@
       {% load static %}
       <img src="{% static 'images/logo_2.png' %}" width="10%" /></a>
    
-<div class="nav-links" id="navLinks">
+<div class="nav-links" id="navLinks" >
   <i class="fa fa-times-circle-o" onclick="hideMenu()"></i>
   <ul>
     
     <li><a href="{% url 'home' %}">Home</a></li>
-    <li><a href="{% url 'home' %}">Search</a></li>
+    <li><a href="{% url 'recipe:search' %}">Search</a></li>
     <li><a href="#news">Category</a>
       <div class="sub-about">
         <ul>
@@ -37,28 +37,33 @@
           </ul>
       </div>
     </li>
+    {% if user.is_authenticated %}
     <li ><a href="{% url 'logout' %}">Log Out</a></li>
-    <li ><a href="#">{{ user.username }}</a>
-      <div class="sub-about">
-        <ul>
-          <li><a href = "{% url 'EditProfile' %}" >Edit profile</a></li>
-          <li><a href = "{% url 'EditPassword' %}" >Edit password</a></li>
-          
-      </ul>
-    </div>
+    {% else %}
+    <li ><a href="{% url 'login' %}">Log In</a></li>
+    {% endif %}
+    <li ><a href="{% url 'home' %}">{{ user.username }}</a>
+          <div class="sub-about">
+            <ul>
+              <li><a href = "{% url 'EditProfile' %}" >Edit profile</a></li>
+              <li><a href = "{% url 'EditPassword' %}" >Edit password</a></li>
+              <li><a href = "{% url 'recipe:send' %}" >Contact us</a></li>
+              
+          </ul>
+        </div>
     </li>
-</ul></div>
 <i class="fa fa-bars" onclick="showMenu()"></i>
 </nav>
 
 </section>
 
 <div class="comment-box">
-  <h2>Comment</h2>
+  <h2>Comment :</h2>
   <form method="post">
   <form action="#">
     {% csrf_token %}
-    <textarea for={{form.body}} name="comment" id="" placeholder="Type your comment."></textarea>
+    <span name="comment"  for={{form.body}} {{ form.body }} </span>
+    <!-- <textarea name="comment" id=""  for={{form.body}} </textarea> -->
     <br><br>
     
     <button type="submit">Submit Comment</button>
