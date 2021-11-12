@@ -129,8 +129,8 @@
           margin: 10px;
         }
         .nav-links ul li:hover .sub-about ul li{
-          width: 130px;
-          padding: 10px;
+          width: 110px;
+          padding: 3.8px;
           background: transparent;
           border-radius: 0;
           text-align: left;
