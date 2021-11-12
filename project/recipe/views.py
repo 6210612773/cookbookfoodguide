@@ -86,22 +86,28 @@ class AddCommentView(CreateView):
     model = Comment
     form_class = CommentForm
     template_name = 'recipe/add_comment.html'
-    success_url = reverse_lazy('home')
-
+    # success_url = reverse_lazy('home')
+    
     def form_valid(self, form):
         form.instance.post_id = self.kwargs['menu_id']
+        self.x=self.kwargs['menu_id']
+        
         form.instance.user = self.request.user
         return super().form_valid(form)
+    def get_success_url(self):         
+        return reverse_lazy('recipe:menu',args=[self.x])
     
 class AddRecipe(CreateView):
     model = Addrecipe
     form_class = AddForm
     template_name = 'recipe/add_recipe.html'
-    success_url = reverse_lazy('recipe:confirm')
+    success_url = reverse_lazy('recipe:complete')
 
     def form_valid(self, form):
         form.instance.user = self.request.user
+        form.instance.confirm = order.status.confirm
         return super().form_valid(form)
+    
 
 def like (request,menu_id):
     Recipe = get_object_or_404(recipe,pk=menu_id)
@@ -188,15 +194,15 @@ class SendPetition (CreateView):
 
 class SendConfirm (CreateView):
     form_class = SendComfirm
-    success_url = reverse_lazy('home')
+    success_url = reverse_lazy('recipe:complete')
     template_name = 'recipe/add_confirm.html'
-        
+
     def form_valid(self, form):
         
         form.instance.order_id = self.kwargs['menu_id']
         form.instance.user = self.request.user
         form.instance.price = (recipe.objects.get(id=self.kwargs['menu_id'])).price
-
+        
         return super().form_valid(form)
 
 def myrecipe (request):
@@ -249,8 +255,6 @@ def admin_addmenu (request):
         "pet" :petition.objects.all(),
         "add" :Addrecipe.objects.all()
         })
-
-
 
 
 

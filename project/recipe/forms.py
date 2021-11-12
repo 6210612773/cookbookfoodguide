@@ -21,7 +21,7 @@ class AddForm(forms.ModelForm):
     class Meta:
        model = Addrecipe
        fields = ('bankaccount','menu','pic','ingredient_unit',
-       'HowToDo','ingredientHave','type','price','calorie')
+       'HowToDo','type','price','calorie')
 
        widgets = {'bankaccount': forms.TextInput}
 
@@ -45,10 +45,10 @@ class Search(forms.ModelForm):
     class Meta:
         model = search
         fields = ('Have','DontNeed')
-        widgets = {'Have': forms.CheckboxSelectMultiple,
+        widgets = {'Have': forms.SelectMultiple(attrs={'type': 'checkboxs'}),
                     'DontNeed' : forms.CheckboxSelectMultiple}
 
-        
+
 
 
 

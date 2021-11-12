@@ -82,7 +82,7 @@ class Addrecipe(models.Model):
     menu = models.CharField(max_length=100,default=None)
     ingredient_unit = models.TextField(blank=True)
     HowToDo = models.TextField(blank=True)
-    ingredientHave =models.ManyToManyField(ingredient,blank=True,related_name="ingredientHave")
+    
 
     type = models.CharField(max_length=100,
         choices=mode.choices,
@@ -91,7 +91,7 @@ class Addrecipe(models.Model):
 
     confirm = models.CharField(max_length=10,
         choices=status.choices,
-        default=status.confirm.no,
+        default=status.no,
         )
 
     price = models.IntegerField(default=None, null=True)
@@ -115,7 +115,7 @@ class order (models.Model):
     bankaccount = models.CharField(default=None,max_length=4)
     confirm = models.CharField(max_length=10,
         choices=status.choices,
-        default=status.confirm.no,
+        default=status.no,
         )
     def __str__(self) -> str:
         return f"{self.name,self.time}"
@@ -137,7 +137,7 @@ class petition (models.Model):
         confirm = "confirm"
     confirm = models.CharField(max_length=10,
         choices=status.choices,
-        default=status.confirm.no,
+        default=status.no,
         )
     def __str__(self) -> str:
         return f"{self.user,self.date_added}"
