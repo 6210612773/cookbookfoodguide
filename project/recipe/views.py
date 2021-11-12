@@ -72,7 +72,7 @@ def menu (request,menu_id):
     else :
         Recipe.status = "price"
     
-    x=Recipe.HowToDo.split('Step')
+    x=Recipe.HowToDo.split('>')
     y=Recipe.ingredient_unit.split('>')
     if not request.user.is_authenticated:
         return HttpResponseRedirect(reverse("login"))

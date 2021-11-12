@@ -18,7 +18,7 @@
             <ul>
               
               <li><a href="{% url 'home' %}">Home</a></li>
-              <li><a href="{% url 'home' %}">Search</a></li>
+              <li><a href="{% url 'recipe:search' %}">Search</a></li>
               <li><a href="#news">Category</a>
                 <div class="sub-about">
                   <ul>
@@ -172,7 +172,7 @@
           <div class="single-instruction">
             <head>
               {% for X in x %}
-              <p>Step : {{X}}
+              <p>{{X}}
                 <br>
                 <br>  
               </p>
