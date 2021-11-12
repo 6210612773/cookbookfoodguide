@@ -53,9 +53,16 @@
 
 </section>
 <h2>Search</h2>
+
 <form method="post">
   {% csrf_token %}
-  {{ form.as_p }}
+  {% for i in form.Have %}   
+    {{i}}  <br>   
+  {% endfor %} 
+  {% for i in form.DontNeed %}   
+      {{i}}  <br>   
+  {% endfor %}
   <button type="submit">Add Recipe</button>
 </form>
+
 {% endblock %}
