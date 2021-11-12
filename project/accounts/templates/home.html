@@ -16,9 +16,10 @@
   <ul>
     
     <li><a href="{% url 'home' %}">Home</a></li>
-    <li><a href="{% url 'home' %}">Search</a></li>
+    <li><a href="{% url 'recipe:search' %}">Search</a></li>
     <li><a href="#news">Category</a>
       <div class="sub-about">
+        
         <ul>
           <li><a href = "{% url 'recipe:meat' %}" >Meat</a></li>
           <li><a href = "{% url 'recipe:app' %}" >Appitizer</a></li>
@@ -54,15 +55,30 @@
 </nav>
 
 </section>
-  <h1>Hi {{ user.username }}!<br>
-    {{ user.email }}</h1>
+<!-- <div class="text-box">
+  <h1>Welcome, {{ user.username }}!</h1>
+  <p>
+    You can reach out to us if you need any help or question 
+  </p>
+</div> -->
+<div class="text-home">
+  <h1>Welcome, {{ user.username }}!</h1>
+  <p>
+    You can reach out to us if you need any help or question <br><br>
+  </p>
+    <!-- {{ user.email }}</h1> -->
     {%if user.username == "admin" %}
-    <a href = "{% url 'recipe:order' %}" >order</a><br><br>
-    <a href = "{% url 'recipe:petition' %}" >petition</a><br><br>
-    <a href = "{% url 'recipe:addmenu' %}" >user add menu</a><br><br>
-  <button class="w3-button w3-round-xlarge" ><a href="{% url 'admin:index' %}">Edit data</a></button>
+    <a href = "{% url 'recipe:order' %}" >Order</a>
+    <a class="btn" href = "{% url 'recipe:petition' %}">Petition</a>
+    <a href = "{% url 'recipe:addmenu' %}" style="margin-left: 30px;">User add menu</a>
+    <a class="btn" href = "{% url 'admin:index' %}" >Edit data</a>
+  <!-- <button class="w3-button w3-round-xlarge" ><a href="{% url 'admin:index' %}">Edit data</a></button> -->
+    {% else %}
+    <a href = "{% url 'recipe:myrecipe' %}" >Your recipe</a>
+    <a class="btn" href = "{% url 'recipe:mylike' %}" >Your favorite</a>
+    <a href = "{% url 'recipe:purchased' %}" style="margin-left: 30px;" >Purchased</a>
     {% endif %}
-
+  </div>
 {% else %}
 <body>
   <section class="header">
@@ -76,7 +92,7 @@
     <ul>
       
       <li><a href="{% url 'home' %}">Home</a></li>
-      <li><a href="{% url 'home' %}">Search</a></li>
+      <li><a href="{% url 'recipe:search' %}">Search</a></li>
       <li><a href="#news">Category</a>
         <div class="sub-about">
           <ul>
@@ -107,7 +123,7 @@
   <div class="text-box">
     <h1> Cookbook Foodguide</h1>
     <p> Please select your ingredient and enjoy your recipe</p>
-    <a href="" class="hero-btn">Search</a>
+    <a href="{% url 'recipe:search' %}" class="hero-btn">Search</a>
   </div>
 </section>
 
