@@ -45,7 +45,7 @@ class Search(forms.ModelForm):
     class Meta:
         model = search
         fields = ('Have','DontNeed')
-        widgets = {'Have': forms.SelectMultiple(attrs={'type': 'checkboxs'}),
+        widgets = {'Have': forms.CheckboxSelectMultiple,
                     'DontNeed' : forms.CheckboxSelectMultiple}
 
 

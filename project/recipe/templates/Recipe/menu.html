@@ -199,10 +199,12 @@
         </div>
         <!-- <li ><a href="{% url 'recipe:AddComment' menu.id %}">add comment</a></li> -->
         {% endif %}
+
         <div class="show-comment">
-          <div class="container-comment">
         {% for com in comment %}
+
         {% if com.post == menu  %}
+        <div class="container-comment">
         {{com.user}} {{com.date_added}}<br>
             {{com.body}} <br>
             <br><br>

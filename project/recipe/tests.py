@@ -4,11 +4,14 @@ from django.test import TestCase, Client
 from django.urls import reverse
 from django.contrib.auth.models import User
 from recipe.models import ingredient , recipe
-
+from django.contrib.auth.hashers import make_password
+password = make_password('1234')
 
 # Create your tests here.
 
 class RecipeModelTestCase(TestCase):
+    def setUp(self):
+        User.objects.create(username= 'user1', password1=password,password2=password, email= 'user1@example.com')
 
     def test_index_recipe(self):
         c = Client()
@@ -55,6 +58,22 @@ class RecipeModelTestCase(TestCase):
         c = Client()
         response = c.get(reverse('recipe:mode'))
         self.assertEqual(response.status_code, 200)
+
+    def test_admin_petition(self):
+        c = Client()
+        response = c.get(reverse('recipe:petition'))
+        self.assertEqual(response.status_code, 200)
+
+    def test_admin_addmenu(self):
+        c = Client()
+        response = c.get(reverse('recipe:addmenu'))
+        self.assertEqual(response.status_code, 200)
+
+    def test_admin_order(self):
+        c = Client()
+        response = c.get(reverse('recipe:order'))
+        self.assertEqual(response.status_code, 200)
+
 
     # def test_menu_recipe(self):
     #     c = Client()

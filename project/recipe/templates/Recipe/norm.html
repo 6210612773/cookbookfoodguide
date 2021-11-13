@@ -14,13 +14,13 @@
             <!-- <a href="#" class="fa fa-eye"></a><br> -->
             <a href = "{% url 'recipe:menu' list_menu.id %}" >
             <h3>{{list_menu.menu}}</h3></a>
-            <div class="stars">
+            <!-- <div class="stars">
             <i class="fa fa-star"></i>
             <i class="fa fa-star"></i>
             <i class="fa fa-star"></i>
             <i class="fa fa-star"></i>
             <i class="fa fa-star-half-o"></i>
-            </div>
+            </div> -->
             {% if list_menu.price == None or list_menu.price == 0.0 %}
               <span>free</span>
             {% else %} 
