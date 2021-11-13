@@ -1,57 +1,9 @@
-{% extends 'recipe/base_result.html' %}
+{% extends 'recipe/layout.html' %}
 
 {% block title %}Add Recipe {% endblock %}
 
 {% block content %}
-<section class="header">
-    <nav>
-      <a href="{% url 'home' %}">
-        {% load static %}
-        <img src="{% static 'images/logo_2.png' %}" width="10%" /></a>
-     
-  <div class="nav-links" id="navLinks">
-    <i class="fa fa-times-circle-o" onclick="hideMenu()"></i>
-    <ul>
-      
-      <li><a href="{% url 'home' %}">Home</a></li>
-      <li><a href="{% url 'recipe:search' %}">Search</a></li>
-      <li><a href="#news">Category</a>
-        <div class="sub-about">
-          <ul>
-            <li><a href = "{% url 'recipe:meat' %}" >Meat</a></li>
-            <li><a href = "{% url 'recipe:app' %}" >Appitizer</a></li>
-            <li><a href = "{% url 'recipe:bev' %}" >Beverage</a></li>
-            <li><a href = "{% url 'recipe:hal' %}" >Halal</a></li>
-            <li><a href = "{% url 'recipe:norm' %}" >Dessert</a></li>
-            <li><a href = "{% url 'recipe:oco' %}" >Oco vegan</a></li>
-            <li><a href = "{% url 'recipe:vegy' %}" >Vegetarian</a></li></li>
-        </ul>
-      </div>
-      </li>
-      <li><a href="#" class="About">About</a>
-        <div class="sub-about">
-            <ul>
-                <li><a href="{% url 'about:index' %}">Contact us</a></li>
-                <li><a href="https://github.com/6210612773/cookbookfoodguide">Git Hub</a></li>
-                <li><a href="https://www.pivotaltracker.com/n/projects/2535892">pivotaltracker</a></li>
-            </ul>
-        </div>
-      </li>
-      <li ><a href="{% url 'logout' %}">Log Out</a></li>
-      <li ><a href="#">{{ user.username }}</a>
-        <div class="sub-about">
-          <ul>
-            <li><a href = "{% url 'EditProfile' %}" >Edit profile</a></li>
-            <li><a href = "{% url 'EditPassword' %}" >Edit password</a></li>
-            
-        </ul>
-      </div>
-      </li>
-  </ul></div>
-  <i class="fa fa-bars" onclick="showMenu()"></i>
-  </nav>
-  
-  </section>
+
 
   <section class="dishes" id="dishes">
     <h1 class="heading">Result<span>Recipe</span></h1>
@@ -73,7 +25,7 @@
             <i class="fa fa-star"></i>
             <i class="fa fa-star-half-o"></i>
             </div>
-            {% if list_menu.price == None %}
+            {% if list_menu.price == None or list_menu.price == 0.0 %}
               <span>free</span>
             {% else %} 
               <span>{{list_menu.price}}</span>
