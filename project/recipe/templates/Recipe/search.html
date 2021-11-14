@@ -4,17 +4,19 @@
 
 {% block content %}
 
-<h2>Search</h2>
+
 
 
 <form method="post">
   {% csrf_token %}
+  <h2>ingredient</h2>
   {% for i in form.Have %}   
-    {{i}}  <br>   
+    {{i}}     
 
   {% endfor %} 
+  <h2>Allergies</h2>
   {% for i in form.DontNeed %}   
-      {{i}}  <br>   
+      {{i}}  
   {% endfor %}
   <button type="submit">Add Recipe</button>
 </form>
