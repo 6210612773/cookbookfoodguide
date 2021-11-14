@@ -1,4 +1,34 @@
-{% for menu in recipes %}
+{% extends 'recipe/base_user.html' %}
+{% load static %}
+{% block content %}
+
+
+<section class="dishes" id="dishes">
+    <h1 class="heading">Purchased<span>Recipe</span></h1>
+    <div class="box-container">
+        {% for menu in recipes %}
+
+        {% for i in menu.member.all %}
+            {% if i == my %}
+        <div class="box">
+            <img class="image" src="{{menu.pic.url}}" style="width: 50%; ;"/><br>
+            <a href="{% url 'recipe:like' menu.id  %}" class="fa fa-heart"></a>
+            <!-- <a href = "{% url 'recipe:like' list_menu.id %}" >Like</a> -->
+            <!-- <a href="#" class="fa fa-eye"></a><br> -->
+            <a href = "{% url 'recipe:menu' menu.id %}" >
+            <h3>{{menu}}</h3></a>
+            
+        </div>
+        {% endif %} 
+        {% endfor %}
+        
+        
+        {% endfor %}
+  </div>
+</section>
+
+
+<!-- {% for menu in recipes %}
 
 {% for i in menu.member.all %}
     {% if i == my %}
@@ -7,4 +37,6 @@
 {% endfor %}
 
 
-{% endfor %}
+{% endfor %} -->
+
+{% endblock %}

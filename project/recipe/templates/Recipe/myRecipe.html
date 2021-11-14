@@ -1,4 +1,30 @@
-{% for menu in add %}
+{% extends 'recipe/base_user.html' %}
+{% load static %}
+{% block content %}
+
+
+<section class="dishes" id="dishes">
+    <h1 class="heading">My<span>Recipe</span></h1>
+    <div class="box-container">
+        {% for menu in add %}
+        {% if menu.user == my %}
+        <div class="box">
+            <img class="image" src="{{menu.pic.url}}" style="width: 50%; ;"/><br>
+            <a href="{% url 'recipe:like' menu.id  %}" class="fa fa-heart"></a>
+            <a href = "{% url 'recipe:menu' menu.id %}" >
+            <h3>{{menu}}</h3></a>
+            
+        </div>
+        {% endif %} 
+        {% endfor %}
+        
+  </div>
+</section>
+
+
+
+
+<!-- {% for menu in add %}
 
 
 
@@ -8,4 +34,6 @@
 
 
 
-{% endfor %}
+{% endfor %} -->
+
+{% endblock %}
