@@ -13,7 +13,6 @@ urlpatterns =[
     path('oco', views.oco, name="oco"),
     path('vegy', views.vegy, name="vegy"),
     path('app', views.app, name="app"),
-    path('mode', views.mode, name="mode"),
     path('<int:menu_id>',views.menu,name="menu"),
     path('<int:menu_id>/comment/',AddCommentView.as_view(),name="AddComment") ,
     path('addrecipe',AddRecipe.as_view(),name="addrecipe"),
