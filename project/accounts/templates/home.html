@@ -77,6 +77,7 @@
     <a href = "{% url 'recipe:myrecipe' %}" >Your recipe</a>
     <a class="btn" href = "{% url 'recipe:mylike' %}" >Your favorite</a>
     <a href = "{% url 'recipe:purchased' %}" style="margin-left: 30px;" >Purchased</a>
+    <a class="btn" href = "{% url 'recipe:addrecipe' %}" >Add recipe</a>
     {% endif %}
   </div>
 {% else %}

@@ -105,7 +105,7 @@ class AddRecipe(CreateView):
 
     def form_valid(self, form):
         form.instance.user = self.request.user
-        form.instance.confirm = order.status.confirm
+        form.instance.confirm = order.status.no
         return super().form_valid(form)
     
 
