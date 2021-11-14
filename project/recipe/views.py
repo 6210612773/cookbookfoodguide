@@ -18,10 +18,6 @@ def index (request):
         "recipes": recipe.objects.all(),
         })
 
-def mode (request):
-    return render(request,'recipe/mode.html',{
-        "recipes": recipe.objects.all(),
-        })
 
 def meat (request):
     return render(request,'recipe/meat.html',{
@@ -68,10 +64,10 @@ def menu (request,menu_id):
     
     if  Recipe.price == None :
         Recipe.status = "free"
-        
+        Recipe.save()        
     else :
         Recipe.status = "price"
-    
+        Recipe.save()    
     x=Recipe.HowToDo.split('>')
     y=Recipe.ingredient_unit.split('>')
     if not request.user.is_authenticated:

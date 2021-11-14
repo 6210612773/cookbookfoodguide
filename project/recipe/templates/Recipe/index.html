@@ -1,20 +1,11 @@
+{% extends 'recipe/layout.html' %}
+{% load static %}
 {% block content %}
 
-<!-- <div class="search-container">
-    <form action="{% url 'recipe:mode' %}/post" method="POST">
-      <input type="text" placeholder="Search.." name="search">
-      <button type="submit" onclick="">find</button>
-    </form>
-  </div> -->
 
   <input type="checkbox" checked="checked">
 
-<!-- {% for list_menu in recipes %}
-<a href = "{% url 'recipe:menu' list_menu.id %}" >
-    
-    {% if list_menu.type == "meat" %}
-        {{list_menu.menu}}<br></a>
-    {% endif %}
+
 
 {% endfor %} --><br>
 <a href = "{% url 'recipe:mode' %}" >mode</a><br>

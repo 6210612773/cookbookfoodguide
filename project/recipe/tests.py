@@ -11,7 +11,10 @@ password = make_password('1234')
 
 class RecipeModelTestCase(TestCase):
     def setUp(self):
-        User.objects.create(username= 'user1', password1=password,password2=password, email= 'user1@example.com')
+        User.objects.create(username= 'user1', password=password,email= 'user1@example.com')
+        menu1= recipe.objects.create(menu='soup',type='meat',price=0.0)
+        menu2 = recipe.objects.create(menu='porksoup',type='halal',price=20) 
+
 
     def test_index_recipe(self):
         c = Client()
@@ -54,11 +57,6 @@ class RecipeModelTestCase(TestCase):
         response = c.get(reverse('recipe:app'))
         self.assertEqual(response.status_code, 200)
 
-    def test_mode_recipe(self):
-        c = Client()
-        response = c.get(reverse('recipe:mode'))
-        self.assertEqual(response.status_code, 200)
-
     def test_admin_petition(self):
         c = Client()
         response = c.get(reverse('recipe:petition'))
@@ -75,12 +73,13 @@ class RecipeModelTestCase(TestCase):
         self.assertEqual(response.status_code, 200)
 
 
-    # def test_menu_recipe(self):
-    #     c = Client()
-    #     recipe1 = recipe.objects.create(menu='soup',type='meat') 
-    #     response = c.get(reverse('recipe:menu', args=(recipe1.id,)))
-    #     recipe2 = recipe.objects.create(menu='soup',type='halal',price=20) 
-    #     response = c.get(reverse('recipe:menu', args=(recipe1.id,)))
-    #     response = c.get(reverse('recipe:menu', args=(recipe2.id,)))
-    #     self.assertEqual(response.status_code, 302)
+    def test_menu_recipe(self):
+        c = Client()
+        recipe1 = recipe.objects.create(menu='soup',type='meat') 
+        response = c.get(reverse('recipe:menu', args=(recipe1.id,)))
+        recipe2 = recipe.objects.create(menu='soup',type='halal',price=20) 
+        response = c.get(reverse('recipe:menu', args=(recipe1.id,)))
+        response = c.get(reverse('recipe:menu', args=(recipe2.id,)))
+        self.assertEqual(response.status_code, 302)
+
 
