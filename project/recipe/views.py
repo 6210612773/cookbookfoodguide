@@ -62,7 +62,7 @@ def confirm (request):
 def menu (request,menu_id):
     Recipe = get_object_or_404(recipe,pk=menu_id)
     
-    if  Recipe.price == None :
+    if  Recipe.price == None or Recipe.price == 0.0:
         Recipe.status = "free"
         Recipe.save()        
     else :

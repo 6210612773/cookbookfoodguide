@@ -12,8 +12,8 @@ password = make_password('1234')
 class RecipeModelTestCase(TestCase):
     def setUp(self):
         User.objects.create(username= 'user1', password=password,email= 'user1@example.com')
-        menu1= recipe.objects.create(menu='soup',type='meat',price=0.0)
-        menu2 = recipe.objects.create(menu='porksoup',type='halal',price=20) 
+        menu1= recipe.objects.create(menu='soup',type='meat',price=0.0,pic='static/images/bg.png')
+        menu2 = recipe.objects.create(menu='porksoup',type='halal',price=20,pic='static/images/bg.png') 
 
 
     def test_index_recipe(self):
@@ -67,6 +67,12 @@ class RecipeModelTestCase(TestCase):
         response = c.get(reverse('recipe:addmenu'))
         self.assertEqual(response.status_code, 200)
 
+    def test_complete_recipe(self):
+        c = Client()
+        response = c.get(reverse('recipe:complete'))
+        self.assertEqual(response.status_code, 200)
+
+
     def test_admin_order(self):
         c = Client()
         response = c.get(reverse('recipe:order'))
@@ -75,11 +81,51 @@ class RecipeModelTestCase(TestCase):
 
     def test_menu_recipe(self):
         c = Client()
-        recipe1 = recipe.objects.create(menu='soup',type='meat') 
+        recipe1 = recipe.objects.get(menu='soup') 
         response = c.get(reverse('recipe:menu', args=(recipe1.id,)))
-        recipe2 = recipe.objects.create(menu='soup',type='halal',price=20) 
-        response = c.get(reverse('recipe:menu', args=(recipe1.id,)))
+        self.assertEqual(response.status_code, 302)
+        recipe2 = recipe.objects.get(menu='porksoup') 
         response = c.get(reverse('recipe:menu', args=(recipe2.id,)))
         self.assertEqual(response.status_code, 302)
 
 
+    def test_menu_recipe_with_authenticate(self):
+        c = Client()
+        user = User.objects.get(username='user1')
+        c.force_login(user)
+        recipe1 = recipe.objects.get(menu='soup') 
+        response = c.get(reverse('recipe:menu', args=(recipe1.id,)))
+        self.assertEqual(response.status_code, 200)
+        recipe2 = recipe.objects.get(menu='porksoup') 
+        response = c.get(reverse('recipe:menu', args=(recipe2.id,)))
+        self.assertEqual(response.status_code, 200)
+
+
+    def test_recipe_purchased(self):
+        c = Client()
+        response = c.get(reverse('recipe:purchased'))
+        self.assertEqual(response.status_code, 200)
+
+
+    def test_myrecipe(self):
+        c = Client()
+        response = c.get(reverse('recipe:myrecipe'))
+        self.assertEqual(response.status_code, 200)
+
+
+    def test_recipe_mylike(self):
+        c = Client()
+        response = c.get(reverse('recipe:mylike'))
+        self.assertEqual(response.status_code, 200)
+
+    def test_search_with_authenticate(self):
+        c = Client()
+        user = User.objects.get(username='user1')
+        c.force_login(user)
+        response = c.get(reverse('recipe:search'))
+        self.assertEqual(response.status_code, 200)
+
+    def test_search_without_authenticate(self):
+        c = Client()
+        response = c.get(reverse('recipe:search'))
+        self.assertEqual(response.status_code, 200)
