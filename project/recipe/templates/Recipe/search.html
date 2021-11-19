@@ -9,16 +9,50 @@
 
 <form method="post">
   {% csrf_token %}
-  <h2>ingredient</h2>
+  <h1 class="heading">ingre<span>dient</span></h1>
+  <table style="margin-left: 3%;">
+  <tr>
   {% for i in form.Have %}   
-    {{i}}     
+  <td>
+  {{i}}  
+  </td>
+
+    {% if forloop.counter|divisibleby:5 %}
+  </tr>
+  <tr>
+    {% endif %}
 
   {% endfor %} 
-  <h2>Allergies</h2>
+</tr>
+  </table>
+
+
+
+  <h1 class="heading">Aller<span>gies</span></h1>
+  <table style="margin-left: 3%;">
+    <tr>
   {% for i in form.DontNeed %}   
-      {{i}}  
-  {% endfor %}
-  <button type="submit">Add Recipe</button>
+  <td>
+    {{i}}  
+    </td>
+  
+      {% if forloop.counter|divisibleby:5 %}
+    </tr>
+    <tr>
+      {% endif %}
+  
+    {% endfor %} 
+  </tr>
+    </table>
+
+
+
+
+
+
+
+  <br>  <br>  <br>  <br>  
+  <button type="submit" class="btn">Add Recipe</button>
 </form>
 
 {% endblock %}
