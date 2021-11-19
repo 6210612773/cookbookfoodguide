@@ -74,12 +74,12 @@ def menu (request,menu_id):
     else :
         Recipe.status = "price"
         Recipe.save()    
-
+        if not request.user.is_authenticated:
+            return HttpResponseRedirect(reverse("login"))
     howtodo=Recipe.HowToDo.split('>')
     ingredient=Recipe.ingredient_unit.split('>')
 
-    if not request.user.is_authenticated:
-        return HttpResponseRedirect(reverse("login"))
+        
 
     return render(request,"recipe/menu.html",{
         "menu": Recipe,

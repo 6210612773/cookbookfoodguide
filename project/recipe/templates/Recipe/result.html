@@ -10,18 +10,18 @@
   <div class="box-container">
     {% for menu in filter %} 
       {% if menu != 0 %}
-        {% for a in all %}
-          {% if menu == a %}
+        {% for list in all %}
+          {% if menu == list %}
             <div class="box">
-              <img class="image" src="{{a.pic.url}}" style="width: 50%; ;"/><br>
-              <a href="{% url 'recipe:like' a.id  %}" class="fa fa-heart"></a>
-              <a href = "{% url 'recipe:menu' a.id %}" >
-              <h3>{{a.menu}}</h3></a>
+              <img class="image" src="{{list.pic.url}}" style="width: 50%; ;"/><br>
+              <a href="{% url 'recipe:like' list.id  %}" class="fa fa-heart"></a>
+              <a href = "{% url 'recipe:menu' list.id %}" >
+              <h3>{{list.menu}}</h3></a>
 
-              {% if list_menu.price == None or list_menu.price == 0.0 %}
+              {% if list.price == None or list.price == 0.0 %}
                 <span>free</span>
-              {% else %} 
-                <span>{{list_menu.price}}</span>
+              {% else %} <br>
+                <span>{{list.price}} $</span>
               {% endif %}
             </div>
           {% endif %}
