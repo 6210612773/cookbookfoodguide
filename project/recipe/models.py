@@ -26,7 +26,7 @@ class recipe(models.Model):
         meat = "meat"
         halal = "halal"
         beverag = "beverag"
-        ocovegen = "ocovegen"
+        ovovegen = "ovovegen"
         vegy = "vegetarian"
         appetizer = "appetizer"
 
@@ -74,7 +74,7 @@ class Addrecipe(models.Model):
         meat = "meat"
         halal = "halal"
         beverag = "beverag"
-        ocovegen = "ocovegen"
+        ovovegen = "ovovegen"
         vegy = "vegetarian"
         appetizer = "appetizer"
 

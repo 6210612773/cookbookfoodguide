@@ -5,52 +5,37 @@
 {% block content %}
 
 
-  <section class="dishes" id="dishes">
-    <h1 class="heading">Result<span>Recipe</span></h1>
-    <div class="box-container">
-        {% for menu in check %} 
-        {% if menu != 0 %}
-            {% for a in all %}
-                {% if menu == a %}
-        <div class="box">
-            
-            <img class="image" src="{{a.pic.url}}" style="width: 50%; ;"/><br>
-            <a href="{% url 'recipe:like' a.id  %}" class="fa fa-heart"></a>
-            <a href = "{% url 'recipe:menu' a.id %}" >
-            <h3>{{a.menu}}</h3></a>
-            <!-- <div class="stars">
-            <i class="fa fa-star"></i>
-            <i class="fa fa-star"></i>
-            <i class="fa fa-star"></i>
-            <i class="fa fa-star"></i>
-            <i class="fa fa-star-half-o"></i>
-            </div> -->
-            {% if list_menu.price == None or list_menu.price == 0.0 %}
-              <span>free</span>
-            {% else %} 
-              <span>{{list_menu.price}}</span>
-            {% endif %}
-        </div>
-        {% endif %}
+<section class="dishes" id="dishes">
+  <h1 class="heading">Result<span>Recipe</span></h1>
+  <div class="box-container">
+    {% for menu in filter %} 
+      {% if menu != 0 %}
+        {% for a in all %}
+          {% if menu == a %}
+            <div class="box">
+              <img class="image" src="{{a.pic.url}}" style="width: 50%; ;"/><br>
+              <a href="{% url 'recipe:like' a.id  %}" class="fa fa-heart"></a>
+              <a href = "{% url 'recipe:menu' a.id %}" >
+              <h3>{{a.menu}}</h3></a>
+
+              {% if list_menu.price == None or list_menu.price == 0.0 %}
+                <span>free</span>
+              {% else %} 
+                <span>{{list_menu.price}}</span>
+              {% endif %}
+            </div>
+          {% endif %}
         {% endfor %}
-    {% else %} 
-        don't have menu
-    {% endif %}
-{% endfor %}
+      {% else %} 
+        <center>
+          <br><br><br><br>
+          <h1>don't have menu</h1><br><br><br>
+          <p> Please select your ingredient and enjoy your recipe</p><br>
+          <a href="{% url 'recipe:search' %}" class="hero-btn">Search</a>
+        </center>
+      {% endif %}
+    {% endfor %}
   </div>
 </section>
-
-
-<!-- {% for menu in check %} 
-    {% if menu != 0 %}
-        {% for a in all %}
-            {% if menu == a %}
-            <a href = "{% url 'recipe:menu' a.id %}" > {{a}}<br>
-            {% endif %}
-        {% endfor %}
-    {% else %} 
-        don't have menu
-    {% endif %}
-{% endfor %} -->
 
 {% endblock %}

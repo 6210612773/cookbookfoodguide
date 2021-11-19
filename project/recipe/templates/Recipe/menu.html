@@ -2,11 +2,9 @@
 
 {% block content %}
 {% if menu.price > 0.0  %}
-  {% if menu.member.all %}
-    {% for mem in menu.member.all %}
-      {% if user.username != mem %}
-          
- 
+{% if menu.member.all  %}
+  {% for member in menu.member.all %}
+    {% if user == member %}
       <body>
         <section class="header">
             <nav>
@@ -19,7 +17,7 @@
             <ul>
               
               <li><a href="{% url 'home' %}">Home</a></li>
-              <li><a href="{% url 'home' %}">Search</a></li>
+              <li><a href="{% url 'recipe:search' %}">Search</a></li>
               <li><a href="#news">Category</a>
                 <div class="sub-about">
                   <ul>
@@ -42,142 +40,11 @@
                     </ul>
                 </div>
               </li>
-              <li ><a href="{% url 'logout' %}">Log Out</a></li>
-              <li ><a href="#">{{ user.username }}</a>
-      <div class="sub-about">
-              <ul>
-                <li><a href = "{% url 'EditProfile' %}" >Edit profile</a></li>
-                <li><a href = "{% url 'EditPassword' %}" >Edit password</a></li>
-                <li><a href = "{% url 'recipe:send' %}" >Contact us</a></li>
-                
-            </ul>
-          </div>
-      </li>
-          </ul></div>
-          <i class="fa fa-bars" onclick="showMenu()"></i>
-          </nav>
-          
-          </section>
-        </section>
-        <main class="page">
-        <div class="recipe-page">
-          <section class="recipe-hero">
-            <img class="recipe-hero-img" src="{{menu.pic.url}}" >
-            <h2>{{menu.menu}}</h2>
-            <!-- <article>
-              <p>
-                  Let's enjoy your recipe ! 
-              </p>
-               
-            </article> -->
-          </section>
-          <br><br><br>
-          <section class="recipe-content">
-            <article>
-              <h4 class="heading">Ingre<span>dient</span></h4>
-                    <br>
-                   
-              <div class="single-instruction">
-                <head>
-                  {% for Y in y %}
-                  <p>{{Y}}
-                    <br>
-                    <br>  
-                  </p>
-                  <div></div>
-                </head>
-                <!-- <p>
-                  {{X}}
-                  <br>
-                  <br>
-                </p> -->
-                {% endfor %}
-              </div>
-            
-            </article>
-            <article class="second-column">
-              <div>
-                <h4 class="heading">Intruc<span>tions</span></h4>
-                
-                {% for X in x %}
-                <p class="single-ingredient">
-                  {{X}}
-                  <br>
-                  <br>
-                </p>
-                {% endfor %} 
-              </div>
-            </article>
-          </section>
-          <br><br>
-          {% if user.username != "" %}
-            <div class="btn-menu">
-            <a href = "{% url 'recipe:AddComment' menu.id %}" >Add comment</a>
-            </div>
-            <!-- <li ><a href="{% url 'recipe:AddComment' menu.id %}">add comment</a></li> -->
-            {% endif %}
-    
-            <div class="show-comment">
-            {% for com in comment %}
-    
-            {% if com.post == menu  %}
-            <div class="container-comment">
-            {{com.user}} {{com.date_added}}<br>
-                {{com.body}} <br>
-                <br><br>
-              </div>    
-                
-              {% endif %}
-            {% endfor %}
-
-      {% else %} 
-        คุณยังไม่ได้ซื้อเมนูนี้
-        <a href="{% url 'recipe:confirm' menu.id %}">Buy</a>
-      {% endif %}
-    {% endfor %}
-  {% else %} 
-    คุณยังไม่ได้ซื้อเมนูนี้เลย
-    <a href="{% url 'recipe:confirm' menu.id %}">Buy</a>
-  {% endif %}
-  {% else %} 
-  <body>
-    <section class="header">
-        <nav>
-          <a href="{% url 'home' %}">
-            {% load static %}
-            <img src="{% static 'images/logo_2.png' %}" width="10%" /></a>
-        
-      <div class="nav-links" id="navLinks">
-        <i class="fa fa-times-circle-o" onclick="hideMenu()"></i>
-        <ul>
-          
-          <li><a href="{% url 'home' %}">Home</a></li>
-          <li><a href="{% url 'home' %}">Search</a></li>
-          <li><a href="#news">Category</a>
-            <div class="sub-about">
-              <ul>
-                <li><a href = "{% url 'recipe:meat' %}" >Meat</a></li>
-                <li><a href = "{% url 'recipe:app' %}" >Appitizer</a></li>
-                <li><a href = "{% url 'recipe:bev' %}" >Beverage</a></li>
-                <li><a href = "{% url 'recipe:hal' %}" >Halal</a></li>
-                <li><a href = "{% url 'recipe:norm' %}" >Dessert</a></li>
-                <li><a href = "{% url 'recipe:oco' %}" >Ovo vegan</a></li>
-                <li><a href = "{% url 'recipe:vegy' %}" >Vegetarian</a></li></li>
-            </ul>
-          </div>
-          </li>
-          <li><a href="#" class="About">About</a>
-          <div class="sub-about">
-                <ul>
-                    <li><a href="{% url 'about:index' %}">Contact us</a></li>
-                    <li><a href="https://github.com/6210612773/cookbookfoodguide">Git Hub</a></li>
-                    <li><a href="https://www.pivotaltracker.com/n/projects/2535892">pivotaltracker</a></li>
-                </ul>
-            </div>
-          </li>
+              {% if user.is_authenticated %}
           <li ><a href="{% url 'logout' %}">Log Out</a></li>
-          <li ><a href="#">{{ user.username }}</a>
-	<div class="sub-about">
+          {% endif %}
+              <li ><a href="#">{{ user.username }}</a>
+		<div class="sub-about">
           <ul>
             <li><a href = "{% url 'EditProfile' %}" >Edit profile</a></li>
             <li><a href = "{% url 'EditPassword' %}" >Edit password</a></li>
@@ -185,89 +52,210 @@
             
         </ul>
       </div>
-	</li>
-      </ul></div>
-      <i class="fa fa-bars" onclick="showMenu()"></i>
-      </nav>
-      
-      </section>
-    </section>
-    <main class="page">
-    <div class="recipe-page">
-      <section class="recipe-hero">
-        <img class="recipe-hero-img" src="{{menu.pic.url}}" >
-        <h2>{{menu.menu}}</h2>
-        <!-- <article>
-          <p>
-              Let's enjoy your recipe ! 
-          </p>
-           
-        </article> -->
-      </section>
-      <br><br><br>
-      <section class="recipe-content">
-        <article>
-          <h4 class="heading">Ingre<span>dient</span></h4>
-                <br>
+
+	  </li>
+          </ul></div>
+          <i class="fa fa-bars" onclick="showMenu()"></i>
+          </nav>
+          
+          </section>
+          
+          <main class="page">
+            <div class="recipe-page">
+              <section class="recipe-hero">
+                <img class="recipe-hero-img" src="{{menu.pic.url}}" >
+                <h2>{{menu.menu}}</h2>
                
-          <div class="single-instruction">
-            <head>
-              {% for Y in y %}
-              <p>{{Y}}
-                <br>
-                <br>  
-              </p>
-              <div></div>
-            </head>
-            <!-- <p>
-              {{X}}
-              <br>
-              <br>
-            </p> -->
-            {% endfor %}
-          </div>
+              </section>
+              <br><br><br>
+              <section class="recipe-content">
+                <article>
+                  <h4 class="heading">Ingre<span>dient</span></h4>
+                        <br>
+                       
+                  <div class="single-instruction">
+                    <head>
+                      {% for list in ingredient %}
+                      <p>{{list}}
+                        <br>
+                        <br>  
+                      </p>
+                      <div></div>
+                    </head>
+                
+                    {% endfor %}
+                  </div>
+                
+                </article>
+                <article class="second-column">
+                  <div>
+                    <h4 class="heading">Intruc<span>tions</span></h4>
+                    
+                    {% for how in howtodo %}
+                    <p class="single-ingredient">
+                      {{how}}
+                      <br>
+                      <br>
+                    </p>
+                    {% endfor %}
+                  </div>
+                </article>
+              </section>
+              <br><br>
+              {% if user.username != "" %}
+                <div class="btn-menu">
+                <a href = "{% url 'recipe:AddComment' menu.id %}" >Add comment</a>
+                </div>
+                {% endif %}
         
-        </article>
-        <article class="second-column">
-          <div>
-            <h4 class="heading">Intruc<span>tions</span></h4>
+                <div class="show-comment">
+                {% for com in comment %}
+        
+                {% if com.post == menu  %}
+                <div class="container-comment">
+                {{com.user}} {{com.date_added}}<br>
+                    {{com.body}} <br>
+                    <br><br>
+                  </div>    
+                    
+                  {% endif %}
+                {% endfor %}
+                <br><br><br><br><br>
+                
+              </div>
+            </div>
+          </main>
+         
+    {% else %}  <center>
+      คุณยังไม่ได้ซื้อเมนูนี้ <br> 
+      <a href="{% url 'recipe:confirm' menu.id %}">Buy</a>
+            </center>
+    {% endif %}  
+    {% endfor %}{% else %}  <center>
+      คุณยังไม่ได้ซื้อเมนูนี้ <br> 
+      <a href="{% url 'recipe:confirm' menu.id %}">Buy</a>
+            </center>{% endif %} 
+{% else %}
+    <body>
+      <section class="header">
+          <nav>
+            <a href="{% url 'home' %}">
+              {% load static %}
+              <img src="{% static 'images/logo_2.png' %}" width="10%" /></a>
+          
+        <div class="nav-links" id="navLinks">
+          <i class="fa fa-times-circle-o" onclick="hideMenu()"></i>
+          <ul>
             
-            {% for X in x %}
-            <p class="single-ingredient">
-              {{X}}
-              <br>
-              <br>
-            </p>
-            {% endfor %} 
-          </div>
-        </article>
-      </section>
-      <br><br>
-      {% if user.username != "" %}
-        <div class="btn-menu">
-        <a href = "{% url 'recipe:AddComment' menu.id %}" >Add comment</a>
-        </div>
-        <!-- <li ><a href="{% url 'recipe:AddComment' menu.id %}">add comment</a></li> -->
+            <li><a href="{% url 'home' %}">Home</a></li>
+            <li><a href="{% url 'recipe:search' %}">Search</a></li>
+            <li><a href="#news">Category</a>
+              <div class="sub-about">
+                <ul>
+                  <li><a href = "{% url 'recipe:meat' %}" >Meat</a></li>
+                  <li><a href = "{% url 'recipe:app' %}" >Appitizer</a></li>
+                  <li><a href = "{% url 'recipe:bev' %}" >Beverage</a></li>
+                  <li><a href = "{% url 'recipe:hal' %}" >Halal</a></li>
+                  <li><a href = "{% url 'recipe:norm' %}" >Dessert</a></li>
+                  <li><a href = "{% url 'recipe:oco' %}" >Ovo vegan</a></li>
+                  <li><a href = "{% url 'recipe:vegy' %}" >Vegetarian</a></li></li>
+              </ul>
+            </div>
+            </li>
+            <li><a href="#" class="About">About</a>
+            <div class="sub-about">
+                  <ul>
+                      <li><a href="{% url 'about:index' %}">Contact us</a></li>
+                      <li><a href="https://github.com/6210612773/cookbookfoodguide">Git Hub</a></li>
+                      <li><a href="https://www.pivotaltracker.com/n/projects/2535892">pivotaltracker</a></li>
+                  </ul>
+              </div>
+            </li>
+            {% if user.is_authenticated %}
+        <li ><a href="{% url 'logout' %}">Log Out</a></li>
         {% endif %}
-
-        <div class="show-comment">
-        {% for com in comment %}
-
-        {% if com.post == menu  %}
-        <div class="container-comment">
-        {{com.user}} {{com.date_added}}<br>
-            {{com.body}} <br>
-            <br><br>
-          </div>    
-            
-          {% endif %}
-        {% endfor %}
-        <br><br><br><br><br>
-        {% endif %}
-      </div>
+            <li ><a href="#">{{ user.username }}</a>
+  <div class="sub-about">
+        <ul>
+          <li><a href = "{% url 'EditProfile' %}" >Edit profile</a></li>
+          <li><a href = "{% url 'EditPassword' %}" >Edit password</a></li>
+          <li><a href = "{% url 'recipe:send' %}" >Contact us</a></li>
+          
+      </ul>
     </div>
-  </main>
-</body>
+
+  </li>
+        </ul></div>
+        <i class="fa fa-bars" onclick="showMenu()"></i>
+        </nav>
+        
+        </section>
+        
+        <main class="page">
+          <div class="recipe-page">
+            <section class="recipe-hero">
+              <img class="recipe-hero-img" src="{{menu.pic.url}}" >
+              <h2>{{menu.menu}}</h2>
+              
+            </section>
+            <br><br><br>
+            <section class="recipe-content">
+              <article>
+                <h4 class="heading">Ingre<span>dient</span></h4>
+                      <br>
+                     
+                <div class="single-instruction">
+                  <head>
+                    {% for list in ingredient %}
+                    <p>{{list}}
+                      <br>
+                      <br>  
+                    </p>
+                    <div></div>
+                  </head>
+                  {% endfor %}
+                </div>
+              
+              </article>
+              <article class="second-column">
+                <div>
+                  <h4 class="heading">Intruc<span>tions</span></h4>
+                  
+                  {% for how in howtodo %}
+                  <p class="single-ingredient">
+                    {{ how }}
+                    <br>
+                    <br>
+                  </p>
+                  {% endfor %}
+                </div>
+              </article>
+            </section>
+            <br><br>
+            {% if user.username != "" %}
+              <div class="btn-menu">
+              <a href = "{% url 'recipe:AddComment' menu.id %}" >Add comment</a>
+              </div>
+              {% endif %}
+      
+              <div class="show-comment">
+              {% for com in comment %}
+      
+              {% if com.post == menu  %}
+              <div class="container-comment">
+              {{com.user}} {{com.date_added}}<br>
+                  {{com.body}} <br>
+                  <br><br>
+                </div>    
+                  
+                {% endif %}
+              {% endfor %}
+              <br><br><br><br><br>
+              
+            </div>
+          </div>
+        </main>
+{% endif %}  
 {% endblock %}  
 
   

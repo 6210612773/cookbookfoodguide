@@ -8,51 +8,36 @@
 
 
 <form method="post">
+  <center>
   {% csrf_token %}
-  <h1 class="heading">ingre<span>dient</span></h1>
-  <table style="margin-left: 3%;">
-  <tr>
-  {% for i in form.Have %}   
-  <td>
-  {{i}}  
-  </td>
+    <h1 class="heading">ingre<span>dient</span></h1><br><br>
+    <table style="margin-left: 3%;">
+      <tr>
+      {% for list_formHave in form.Have %}   
+        <td>{{list_formHave}}</td>
+        {% if forloop.counter|divisibleby:5 %}
+      </tr>
+      <tr>
+        {% endif %}
+      {% endfor %} 
+      </tr>
+    </table><br><br>
 
-    {% if forloop.counter|divisibleby:5 %}
-  </tr>
-  <tr>
-    {% endif %}
-
-  {% endfor %} 
-</tr>
-  </table>
-
-
-
-  <h1 class="heading">Aller<span>gies</span></h1>
+  <h1 class="heading">Aller<span>gies</span></h1><br><br>
   <table style="margin-left: 3%;">
     <tr>
-  {% for i in form.DontNeed %}   
-  <td>
-    {{i}}  
-    </td>
-  
+    {% for list_formDontNeed in form.DontNeed %}   
+      <td>{{list_formDontNeed}}</td>
       {% if forloop.counter|divisibleby:5 %}
     </tr>
     <tr>
       {% endif %}
-  
     {% endfor %} 
-  </tr>
-    </table>
-
-
-
-
-
-
-
-  <br>  <br>  <br>  <br>  
-  <button type="submit" class="btn">Add Recipe</button>
+    </tr>
+  </table>
+  <br><br><br><br>  
+  <button type="submit" class="hero-btn">Search</button><br><br><br>
+  </center>
 </form>
 
 {% endblock %}

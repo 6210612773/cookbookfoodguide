@@ -4,10 +4,10 @@
 
       
 <section class="dishes" id="dishes">
-  <h1 class="heading">Vegetarian<span>Recipe</span></h1>
+  <h1 class="heading">Appetizer<span>Recipe</span></h1>
   <div class="box-container">
     {% for list_menu in recipes %}
-      {% if list_menu.type == "vegetarian" %}
+      {% if list_menu.type == "appetizer" %}
         <div class="box">
           <img class="image" src="{{list_menu.pic.url}}" style="width: 50%; ;"/><br>
           <a href="#" class="fa fa-heart"></a>

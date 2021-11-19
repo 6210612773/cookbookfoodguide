@@ -5,37 +5,36 @@
 {% block content %}
 
 <section class="header">
-    <nav>
+  <nav>
       <a href="{% url 'home' %}">
         {% load static %}
         <img src="{% static 'images/logo_2.png' %}" width="10%" /></a>
      
-  <div class="nav-links" id="navLinks">
-    <i class="fa fa-times-circle-o" onclick="hideMenu()"></i>
-    <ul>
-      
-      <li><a href="{% url 'home' %}">Home</a></li>
-      <li><a href="{% url 'recipe:search' %}">Search</a></li>
-      <li><a href="#news">Category</a>
+    <div class="nav-links" id="navLinks">
+      <i class="fa fa-times-circle-o" onclick="hideMenu()"></i>
+      <ul>
+        <li><a href="{% url 'home' %}">Home</a></li>
+        <li><a href="{% url 'recipe:search' %}">Search</a></li>
+        <li><a href="#">Category</a>
+          <div class="sub-about">
+            <ul>
+              <li><a href = "{% url 'recipe:meat' %}" >Meat</a></li>
+              <li><a href = "{% url 'recipe:app' %}" >Appitizer</a></li>
+              <li><a href = "{% url 'recipe:bev' %}" >Beverage</a></li>
+              <li><a href = "{% url 'recipe:hal' %}" >Halal</a></li>
+              <li><a href = "{% url 'recipe:norm' %}" >Dessert</a></li>
+              <li><a href = "{% url 'recipe:oco' %}" >Oco vegan</a></li>
+              <li><a href = "{% url 'recipe:vegy' %}" >Vegetarian</a></li></li>
+            </ul>
+          </div>
+        </li>
+      <li><a href="{% url 'about:index' %}" class="About">About</a>
         <div class="sub-about">
           <ul>
-            <li><a href = "{% url 'recipe:meat' %}" >Meat</a></li>
-            <li><a href = "{% url 'recipe:app' %}" >Appitizer</a></li>
-            <li><a href = "{% url 'recipe:bev' %}" >Beverage</a></li>
-            <li><a href = "{% url 'recipe:hal' %}" >Halal</a></li>
-            <li><a href = "{% url 'recipe:norm' %}" >Dessert</a></li>
-            <li><a href = "{% url 'recipe:oco' %}" >Oco vegan</a></li>
-            <li><a href = "{% url 'recipe:vegy' %}" >Vegetarian</a></li></li>
-        </ul>
-      </div>
-      </li>
-      <li><a href="#" class="About">About</a>
-        <div class="sub-about">
-            <ul>
-                <li><a href="{% url 'about:index' %}">Contact us</a></li>
-                <li><a href="https://github.com/6210612773/cookbookfoodguide">Git Hub</a></li>
-                <li><a href="https://www.pivotaltracker.com/n/projects/2535892">pivotaltracker</a></li>
-            </ul>
+            <li><a href="{% url 'about:index' %}">Contact us</a></li>
+            <li><a href="https://github.com/6210612773/cookbookfoodguide">Git Hub</a></li>
+            <li><a href="https://www.pivotaltracker.com/n/projects/2535892">pivotaltracker</a></li>
+          </ul>
         </div>
       </li>
       <li ><a href="{% url 'logout' %}">Log Out</a></li>
@@ -44,30 +43,29 @@
           <ul>
             <li><a href = "{% url 'EditProfile' %}" >Edit profile</a></li>
             <li><a href = "{% url 'EditPassword' %}" >Edit password</a></li>
-            <li><a href = "{% url 'recipe:send' %}" >Contact us</a></li>
-            
-        </ul>
-      </div>
+            <li><a href = "{% url 'recipe:send' %}" >Contact us</a></li>  
+          </ul>
+        </div>
       </li>
-  </ul></div>
-  <i class="fa fa-bars" onclick="showMenu()"></i>
+      </ul>
+    </div>
+    <i class="fa fa-bars" onclick="showMenu()"></i>
   </nav>
-  
-  </section>
+</section>
 
 <section class="dishes" id="dishes">
     <h1 class="heading">Add<span>Menu</span></h1>
-    <div class="box-container">
-        {% for a in add %} 
-        {% if a.confirm == "no" %}
-        <div class="box">
-            <img class="image" src="{{a.pic.url}}" style="width: 50%; ;"/><br>
-            <h3>{{a.user}} {{a.menu}}</h3></a>
-            <button class="button" ><a class="fas fa-check" href="{% url 'admin:index' %}">Check</a></button>
-        </div>
-        {% endif %}
-        {% endfor %}
-  </div>
+      <div class="box-container">
+          {% for list_menu in user_addmenu %} 
+            {% if list_menu.confirm == "no" %}
+              <div class="box">
+                  <img class="image" src="{{a.pic.url}}" style="width: 50%; ;"/><br>
+                  <h3>{{list_menu.user}} {{list_menu.menu}}</h3></a>
+                  <button class="button" ><a class="fas fa-check" href="{% url 'admin:index' %}">Check</a></button>
+              </div>
+            {% endif %}
+          {% endfor %}
+      </div>
 </section>
     
 {% endblock %}

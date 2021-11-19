@@ -2,17 +2,15 @@
 {% load static %}
 
 
-{% for o in order %} 
-
-    {% if o.confirm == "no" %}
+{% for list_order in order %} 
+    {% if list_order.confirm == "no" %}
     <img class="image" src="{{o.pic.url}}" style="width: 50%; ;"/><br>
     <a href="{% url 'recipe:check' o.id  %}" >check</a>
-    {{o.confirm}}
-    {{o.user}}
-    {{o.date}} 
-    {{o.time}}<br>
+        {{list_order.confirm}}
+        {{list_order.user}}
+        {{list_order.date}} 
+        {{list_order.time}}<br>
     {% endif %}
-
 {% endfor %}
 
 <br><br><br><br><br><br><br>

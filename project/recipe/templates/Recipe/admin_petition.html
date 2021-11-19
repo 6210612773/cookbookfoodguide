@@ -1,16 +1,10 @@
 
-
-
-   
-    
-
-
 <h1>Petition</h1>
-{% for p in pet %}  
-    {% if p.confirm == "no" %}
-    {{p.user}}
-    {{p.date_added}} <br>
-    {{p.petition}}<br><br><br>
+{% for list_petition in petition %}  
+    {% if list_petition.confirm == "no" %}
+    {{list_petition.user}}
+    {{list_petition.date_added}} <br>
+    {{list_petition.petition}}<br><br><br>
     {% endif %}
 {% endfor %}
 
