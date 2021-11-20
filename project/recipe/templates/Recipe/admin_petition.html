@@ -1,12 +1,24 @@
+{% extends 'recipe/base.html' %}
+{% load static %}
+{% block content %}
 
-<h1>Petition</h1>
-{% for list_petition in petition %}  
-    {% if list_petition.confirm == "no" %}
-    {{list_petition.user}}
-    {{list_petition.date_added}} <br>
-    {{list_petition.petition}}<br><br><br>
-    {% endif %}
-{% endfor %}
 
-<br><br><br><br><br><br><br>
-<button class="w3-button w3-round-xlarge" ><a href="{% url 'admin:index' %}">Edit data</a></button>
+<section class="dishes" id="dishes">
+    <h1 class="heading">Peti<span>tion</span></h1>
+      <div class="box-container">
+        {% for list_petition in petition %}  
+        {% if list_petition.confirm == "no" %}
+              <div class="box">
+                  <h3>{{list_petition.user}}
+                    {{list_petition.date_added}} <br>
+                    {{list_petition.petition}}<br></h3></a>
+                    <button class="button" ><a class="fa fa-check" href="{% url 'admin:index' %}">Edit data</a></button>
+                  
+              </div>
+            {% endif %}
+          {% endfor %}
+      </div>
+</section>
+
+
+{% endblock %}

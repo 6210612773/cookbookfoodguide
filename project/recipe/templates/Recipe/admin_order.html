@@ -1,17 +1,28 @@
-<h1>Order</h1>
+{% extends 'recipe/base.html' %}
 {% load static %}
+{% block content %}
 
 
-{% for list_order in order %} 
-    {% if list_order.confirm == "no" %}
-    <img class="image" src="{{o.pic.url}}" style="width: 50%; ;"/><br>
-    <a href="{% url 'recipe:check' o.id  %}" >check</a>
-        {{list_order.confirm}}
-        {{list_order.user}}
-        {{list_order.date}} 
-        {{list_order.time}}<br>
-    {% endif %}
-{% endfor %}
+<section class="dishes" id="dishes">
+    <h1 class="heading">Peti<span>tion</span></h1>
+      <div class="box-container">
+        {% for list_order in order %} 
+        {% if list_order.confirm == "no" %}     
+              <div class="box">
+                <img class="image" src="{{list_order.pic.url}}" style="width: 50%; ;"/><br>
+                <!-- <a href="{% url 'recipe:check' list_order.id  %}" >check</a> -->
+                  <h3>{{list_order.confirm}}
+                    {{list_order.user}}
+                    {{list_order.date}} 
+                    {{list_order.time}}<br></h3></a>
+                    <button class="button" ><a class="fa fa-check" href="{% url 'recipe:check' list_order.id  %}">Check</a></button>
+                  
+              </div>
+            {% endif %}
+          {% endfor %}
+      </div>
+</section>
 
-<br><br><br><br><br><br><br>
-<button class="w3-button w3-round-xlarge" ><a href="{% url 'admin:index' %}">Edit data</a></button>
+
+{% endblock %}
+
