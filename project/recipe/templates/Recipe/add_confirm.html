@@ -1,14 +1,42 @@
-{% extends 'base.html' %}
+{% extends 'recipe/layout.html' %}
 
 {% block title %}Add Recipe {% endblock %}
 
 {% block content %}
 
-<h2>Confirm</h2>
 
-<form method="post" action="" enctype="multipart/form-data">
+
+<center>
+
+
+
+
+  <section class="dishes" id="dishes">
+    <h1 class="heading">Payment<span>Confirm</span></h1>
+    <div class="box-container">
+
+<form method="post" action="" enctype="multipart/form-data" class = "box " style="margin-top: 2%; margin-bottom: 5%; margin-left: 20%; margin-right: 20%; background-color: dimgray; background: transparent;"  >
   {% csrf_token %}
-  {{ form.as_p }}
-  <button type="submit">Confirm</button>
+  
+
+  <br>
+  <p style="margin-top: 2%;">Receipt {{ form.pic}}</p>
+  <br>
+  <p>date {{ form.date }}</p>
+  <br>
+  <br>
+  <p>time {{ form.time }}</p>
+  <br>
+  <p></p>
+  <br>
+  <p>name {{ form.name }}</p>
+  <br>
+  <p>Bank Account {{ form.bankaccount }}</p>
+  <br>
+  <button type="submit" class="hero-btn">Confirm</button>
 </form>
+
+</div>
+</section>
+</center>
 {% endblock %}
