@@ -17,7 +17,7 @@
     
     <li><a href="{% url 'home' %}">Home</a></li>
     <li><a href="{% url 'recipe:search' %}">Search</a></li>
-    <li><a href="#news">Category</a>
+    <li><a href="{% url 'recipe:index' %}">Category</a>
       <div class="sub-about">
         
         <ul>
@@ -94,7 +94,7 @@
       
       <li><a href="{% url 'home' %}">Home</a></li>
       <li><a href="{% url 'recipe:search' %}">Search</a></li>
-      <li><a href="#news">Category</a>
+      <li><a href="{% url 'recipe:index' %}">Category</a>
         <div class="sub-about">
           <ul>
             <li><a href = "{% url 'recipe:meat' %}" >Meat</a></li>

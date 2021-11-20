@@ -94,7 +94,7 @@ def like (request,menu_id):
     Recipe = get_object_or_404(recipe,pk=menu_id)
 
     if request.user in Recipe.like.all():
-        pass
+        Recipe.like.remove(request.user)
     else:
         Recipe.like.add(request.user)
     
