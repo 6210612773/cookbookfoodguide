@@ -10,7 +10,7 @@
       {% if list_menu.type == "halal" %}
         <div class="box">
           <img class="image" src="{{list_menu.pic.url}}" style="width: 50%; ;"/><br>
-          <a href="#" class="fa fa-heart"></a>
+          <a href="{% url 'recipe:like' list_menu.id  %}" class="fa fa-heart"></a>
           <a href = "{% url 'recipe:menu' list_menu.id %}" >
           <h3>{{list_menu.menu}}</h3></a>
           {% if list_menu.price == None or list_menu.price == 0.0 %}
