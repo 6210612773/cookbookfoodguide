@@ -3,16 +3,59 @@
 {% block content %}
 
 
+<section class="dishes" id="dishes">
+    <h1 class="heading">Recipe<span>Catagory</span></h1>
+    <div class="box-container" style="margin-top: 3%; margin-bottom: 3%; margin-left: 3%; margin-right: 3%;">
+        
+        <div class="box">
+            <a href = "{% url 'recipe:meat' %}" >
+            <img class="image" src="{% static 'images/meat.jpg' %}" style="width: 50%; ;"/>
+            </a>
+            <center>Meat</center>
+            </div>
+        <div class="box">
+            <a href = "{% url 'recipe:app' %}" >
+            <img class="image" src="{% static 'images/apper.jpg' %}" style="width: 50%; ;"/>
+            </a>
+            <center>Appertizer</center>
+            </div>
+        <div class="box">
+            <a href = "{% url 'recipe:bev' %}" >
+            <img class="image" src="{% static 'images/bevv.jpg' %}" style="width: 50%; ;"/><br>
+            </a>
+            <center>Beverage</center>
+            </div>
+         <div class="box">
+            <a href = "{% url 'recipe:hal' %}" >
+            <img class="image" src="{% static 'images/halal.png' %}" style="width: 50%; ;"/><br>
+            </a>
+            <center>Halal</center>
+            </div>
+         <div class="box">
+            <a href = "{% url 'recipe:norm' %}" >
+            <img class="image" src="{% static 'images/dess.png' %}" style="width: 50%; ;"/><br>
+            </a>
+            <center>Dessert</center>
+            </div>
+         <div class="box">
+            <a href = "{% url 'recipe:oco' %}" >
+            <img class="image" src="{% static 'images/ocoveg.jpg' %}" style="width: 50%; ;"/><br>
+            </a>
+            <center>Ovo Vegeterian</center>
+            </div>
+        <div class="box">
+            <a href = "{% url 'recipe:vegy' %}" >
+            <img class="image" src="{% static 'images/veg.jpg' %}" style="width: 50%; ;"/><br>
+            </a>
+            <center>Vegeterian</center>
+            </div>
+        
+
+    </div>
+  </section>
 
 
-
-
-<a href = "{% url 'recipe:meat' %}" >meat</a><br>
-<a href = "{% url 'recipe:app' %}" >app</a><br>
-<a href = "{% url 'recipe:bev' %}" >bev</a><br>
-<a href = "{% url 'recipe:hal' %}" >hal</a><br>
-<a href = "{% url 'recipe:norm' %}" >norm</a><br>
-<a href = "{% url 'recipe:oco' %}" >oco</a><br>
-<a href = "{% url 'recipe:vegy' %}" >vegy</a><br>
 
     {% endblock %}
+
+    
