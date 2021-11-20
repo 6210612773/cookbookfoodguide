@@ -1,12 +1,51 @@
-{% extends 'base.html' %}
+{% extends 'recipe/layout.html' %}
 
 {% block title %}Add Recipe {% endblock %}
 
 {% block content %}
-<h2>Comment</h2>
-<form method="post" action="" enctype="multipart/form-data">
+<center>
+
+
+
+
+
+  <section class="dishes" id="dishes">
+    <h1 class="heading">Add your <span>Recipe</span></h1>
+    <div class="box-container">
+
+<form method="post" action="" enctype="multipart/form-data" class = "box " style="margin-top: 2%; margin-bottom: 5%; margin-left: 20%; margin-right: 20%; background-color: dimgray; background: transparent;"  >
   {% csrf_token %}
-  {{ form.as_p }}
-  <button type="submit">Add Recope</button>
+  
+ 
+
+  <p style="margin-top: 2%;">Bank account  {{ form.bankaccount }}</p>
+  <br>
+  <p>Menu {{ form.menu}}</p>
+  <br>
+  <p>Picture {{ form.pic }}</p>
+  <br>
+  <p>Ingredient</p>
+  <br>
+  <p>{{ form.ingredient_unit }}</p>
+  <br>
+  <p>Intructions</p>
+  <br>
+  <p>{{ form.HowToDo }}</p>
+  <br>
+  <p>Food catagory {{ form.type }}</p>
+  <br>
+  <p>Price {{ form.price }}</p>
+  <br>
+  <p>Calorie {{ form.calorie }}</p>
+  <br>
+  <button type="submit" class="hero-btn">Add Recipe</button>
 </form>
+
+</div>
+</section>
+</center>
+
+
+
+
 {% endblock %}
