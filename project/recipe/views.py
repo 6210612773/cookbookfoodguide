@@ -101,14 +101,6 @@ def like (request,menu_id):
     return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
     
 
-def Addmember (request,menu_id):
-    Recipe = get_object_or_404(recipe,pk=menu_id)
-    if request.user in Recipe.member.all():
-        pass
-    else:
-        Recipe.like.add(request.user)
-    return HttpResponseRedirect(reverse("recipe:menu",args=(menu_id,)))
-
 
 def result (request):
     All = recipe.objects.all()

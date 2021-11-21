@@ -78,7 +78,7 @@ class Addrecipe(models.Model):
         vegy = "vegetarian"
         appetizer = "appetizer"
 
-    pic = models.ImageField(upload_to="",blank=True,null=True)
+    pic = models.ImageField(upload_to="")
     menu = models.CharField(max_length=100,default=None)
     ingredient_unit = models.TextField(blank=True)
     HowToDo = models.TextField(blank=True)
@@ -108,7 +108,7 @@ class order (models.Model):
     user=models.ForeignKey(User,default=None, on_delete=models.PROTECT,related_name="userbuy")
     order = models.ForeignKey(recipe,on_delete=models.CASCADE,default=None,related_name="menu_order")
     price = models.FloatField(default=None, null=True)
-    pic = models.ImageField(upload_to="",blank=True,null=True)
+    pic = models.ImageField(upload_to="")
     date = models.DateField(editable=True)
     time = models.TimeField(editable=True,default=None)
     name = models.CharField(max_length=100,default=None)
